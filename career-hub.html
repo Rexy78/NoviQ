@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Hub - Career Nova</title>
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/animations.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <div id="sidebar-container"></div>
+
+    <main class="main-content">
+      <!-- Dashboard Header -->
+      <div class="dash-header" style="margin-bottom:1.75rem;">
+        <div>
+          <h1 class="page-title">Resume Intelligence Overview</h1>
+          <p class="page-subtitle" id="last-analysis-sub">Upload your resume to perform your first AI analysis.</p>
+        </div>
+        <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
+          <span class="target-role-pill" id="active-target-pill">
+            Target Role: Software Engineer
+          </span>
+          <div id="header-cta-container">
+            <!-- Dynamically injected CTA -->
+          </div>
+        </div>
+      </div>
+
+      <!-- PRE-ANALYSIS STATE: Single Onboarding Panel -->
+      <div id="pre-analysis-view" class="animate-fade-in" style="display:none;">
+        <div class="card onboarding-card" style="text-align:center; padding: 3rem 2rem; max-width: 820px; margin: 0 auto; background: linear-gradient(135deg, #FFFFFF 0%, #FAF5FF 100%); border: 1px solid var(--border-purple); border-radius: var(--radius-xl); box-shadow: var(--shadow-md);">
+          <div style="width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, #7C3AED, #4F46E5); color:#FFFFFF; display:flex; align-items:center; justify-content:center; margin: 0 auto 1.5rem auto; box-shadow: 0 8px 20px -4px rgba(124, 58, 237, 0.4);">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+          </div>
+
+          <h2 style="font-size:1.65rem; font-weight:800; color:var(--text-dark); margin-bottom:0.5rem; letter-spacing:-0.02em;">
+            No Resume Analysis Performed Yet
+          </h2>
+          <p style="font-size:0.975rem; color:var(--text-muted); max-width:580px; margin:0 auto 1.75rem auto; line-height:1.6;">
+            Upload your resume and select a target job role. Career Nova will automatically extract your keywords, evaluate ATS compatibility, identify skill gaps, and provide AI-guided bullet enhancements.
+          </p>
+
+          <div style="margin-bottom: 2.25rem;">
+            <a href="/upload.html" class="btn btn-primary" style="padding: 0.85rem 2.25rem; font-size:1.025rem; border-radius: var(--radius-md); box-shadow: var(--shadow-purple); display:inline-flex; align-items:center; gap:0.6rem;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <span>Upload & Analyze Resume</span>
+            </a>
+            <div style="font-size:0.8rem; color:var(--text-muted); margin-top:0.75rem;">
+              Supported formats: PDF, DOCX, TXT (up to 5MB)
+            </div>
+          </div>
+
+          <div style="border-top:1px solid var(--border-color); padding-top:1.5rem; display:grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap:1.25rem; text-align:left;">
+            <div style="display:flex; align-items:flex-start; gap:0.65rem;">
+              <span style="font-size:1.3rem;">🎯</span>
+              <div>
+                <strong style="display:block; font-size:0.875rem; color:var(--text-dark);">ATS Keyword Match</strong>
+                <span style="font-size:0.775rem; color:var(--text-muted);">Exact match & density</span>
+              </div>
+            </div>
+            <div style="display:flex; align-items:flex-start; gap:0.65rem;">
+              <span style="font-size:1.3rem;">🧠</span>
+              <div>
+                <strong style="display:block; font-size:0.875rem; color:var(--text-dark);">Skill Gap Audit</strong>
+                <span style="font-size:0.775rem; color:var(--text-muted);">Role gap diagnostics</span>
+              </div>
+            </div>
+            <div style="display:flex; align-items:flex-start; gap:0.65rem;">
+              <span style="font-size:1.3rem;">⚡</span>
+              <div>
+                <strong style="display:block; font-size:0.875rem; color:var(--text-dark);">Tech Stack Simulator</strong>
+                <span style="font-size:0.775rem; color:var(--text-muted);">Project score upgrades</span>
+              </div>
+            </div>
+            <div style="display:flex; align-items:flex-start; gap:0.65rem;">
+              <span style="font-size:1.3rem;">📝</span>
+              <div>
+                <strong style="display:block; font-size:0.875rem; color:var(--text-dark);">Resume Studio</strong>
+                <span style="font-size:0.775rem; color:var(--text-muted);">Quantified bullet fixes</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- POST-ANALYSIS STATE: Full Intelligence Dashboard -->
+      <div id="post-analysis-view" class="animate-fade-in" style="display:none;">
+
+        <!-- 4 Primary KPI Cards -->
+        <div class="kpi-grid" style="margin-bottom:2rem;">
+          <!-- 1. Overall Resume Fit -->
+          <div class="card kpi-card">
+            <div class="kpi-top">
+              <span class="kpi-label">Overall Resume Fit</span>
+            </div>
+            <div>
+              <div class="kpi-value-row">
+                <span class="kpi-value" id="kpi-overall-score">--</span>
+                <span id="kpi-overall-badge"></span>
+              </div>
+              <div class="kpi-desc" id="kpi-overall-desc">General structural & impact rating</div>
+            </div>
+          </div>
+
+          <!-- 2. ATS Compatibility -->
+          <div class="card kpi-card">
+            <div class="kpi-top">
+              <span class="kpi-label">ATS Compatibility</span>
+            </div>
+            <div>
+              <div class="kpi-value-row">
+                <span class="kpi-value" id="kpi-ats-score">--</span>
+                <span id="kpi-ats-badge"></span>
+              </div>
+              <div class="kpi-desc" id="kpi-ats-desc">Keyword match with target role</div>
+            </div>
+          </div>
+
+          <!-- 3. Skills Coverage -->
+          <div class="card kpi-card">
+            <div class="kpi-top">
+              <span class="kpi-label">Skills Match</span>
+            </div>
+            <div>
+              <div class="kpi-value-row">
+                <span class="kpi-value" id="kpi-skill-match">--%</span>
+                <span id="kpi-skill-badge"></span>
+              </div>
+              <div class="kpi-desc" id="kpi-skill-desc">Core role requirements covered</div>
+            </div>
+          </div>
+
+          <!-- 4. Resume Quality & Formatting -->
+          <div class="card kpi-card">
+            <div class="kpi-top">
+              <span class="kpi-label">Resume Quality</span>
+            </div>
+            <div>
+              <div class="kpi-value-row">
+                <span class="kpi-value" id="kpi-quality-score">--</span>
+                <span id="kpi-quality-badge"></span>
+              </div>
+              <div class="kpi-desc" id="kpi-quality-desc">Structure & formatting safety</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section: Priority Actions / What Needs Attention -->
+        <div id="attention-card-section" class="card animate-fade-in" style="margin-bottom:2rem; border-left:4px solid var(--primary-purple);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:0.5rem;">
+            <div>
+              <h2 style="font-size:1.2rem; color:var(--text-dark); margin:0; display:flex; align-items:center; gap:0.4rem;">
+                <span>Priority Actions</span>
+              </h2>
+              <p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.2rem;">
+                Highest-priority items impacting your target role alignment
+              </p>
+            </div>
+            <span class="badge badge-purple" id="attention-count-pill">0 Priority Actions</span>
+          </div>
+
+          <div id="attention-items-list" style="display:flex; flex-direction:column; gap:0.75rem;">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Section: Active Evaluation Summary -->
+        <div class="card" style="margin-bottom:2rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:0.5rem;">
+            <div>
+              <h3 style="margin:0; font-size:1.15rem; color:var(--text-dark);">Active Resume Evaluation</h3>
+              <p style="font-size:0.825rem; color:var(--text-muted); margin-top:0.15rem;">Executive evaluation details for active upload</p>
+            </div>
+            <button class="btn btn-outline btn-sm" onclick="Astra.ask('Provide an executive summary of my resume evaluation.')" style="display:inline-flex; align-items:center; gap:0.35rem;">
+              <span>💬 Ask Astra AI</span>
+            </button>
+          </div>
+
+          <div id="recent-analysis-content">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Section: Career Intelligence Modules (Feature Tiles) -->
+        <div style="margin-bottom:2rem;">
+          <h3 style="font-size:1.15rem; color:var(--text-dark); margin-bottom:1rem;">Career Intelligence Modules</h3>
+
+          <div class="feature-tiles-grid">
+            <a href="/ats.html" class="feature-tile">
+              <div class="feature-tile-icon" style="background:#FAF5FF; color:#7C3AED;">📊</div>
+              <div class="feature-tile-content">
+                <div class="feature-tile-title">ATS Diagnostics</div>
+                <div class="feature-tile-desc">Detailed keyword density, parsing safety, and formatting risk audit.</div>
+              </div>
+              <div class="feature-tile-arrow">&rarr;</div>
+            </a>
+
+            <a href="/skills.html" class="feature-tile">
+              <div class="feature-tile-icon" style="background:#EFF6FF; color:#2563EB;">🧠</div>
+              <div class="feature-tile-content">
+                <div class="feature-tile-title">Skill Gap Intelligence</div>
+                <div class="feature-tile-desc">Identify missing core role requirements and evidence recommendations.</div>
+              </div>
+              <div class="feature-tile-arrow">&rarr;</div>
+            </a>
+
+            <a href="/projects.html" class="feature-tile">
+              <div class="feature-tile-icon" style="background:#F0FDF4; color:#16A34A;">📁</div>
+              <div class="feature-tile-content">
+                <div class="feature-tile-title">Project Depth Diagnostics</div>
+                <div class="feature-tile-desc">Evaluate technical complexity, architectural depth, and role alignment.</div>
+              </div>
+              <div class="feature-tile-arrow">&rarr;</div>
+            </a>
+
+            <a href="/simulator.html" class="feature-tile">
+              <div class="feature-tile-icon" style="background:#FEF3C7; color:#D97706;">⚡</div>
+              <div class="feature-tile-content">
+                <div class="feature-tile-title">Tech Stack Simulator</div>
+                <div class="feature-tile-desc">Simulate architectural project upgrades and measure score boosts.</div>
+              </div>
+              <div class="feature-tile-arrow">&rarr;</div>
+            </a>
+
+            <a href="/resume-editor.html" class="feature-tile">
+              <div class="feature-tile-icon" style="background:#FDF2F8; color:#DB2777;">📝</div>
+              <div class="feature-tile-content">
+                <div class="feature-tile-title">Resume Improvement Studio</div>
+                <div class="feature-tile-desc">Rewrite bullet points with quantifiable impact metrics and export PDF.</div>
+              </div>
+              <div class="feature-tile-arrow">&rarr;</div>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+
+  <script src="/js/icons.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/nav.js"></script>
+  <script src="/js/chatbot.js"></script>
+  <script src="/js/tour.js"></script>
+  <script src="/js/career-hub.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+/* Mobile & Tablet Responsive Media Queries */
+@media (max-width: 1024px) {
+  .app-layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    position: relative;
+    padding: 1rem 1.25rem;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .sidebar-top-section {
+    overflow-y: visible;
+    margin-bottom: 0.5rem;
+  }
+
+  .brand-header-row {
+    margin-bottom: 0.75rem;
+  }
+
+  .nav-menu {
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    gap: 0.5rem;
+  }
+
+  .nav-item a {
+    padding: 0.5rem 0.85rem;
+    white-space: nowrap;
+  }
+
+  .user-profile-badge {
+    display: flex;
+    margin-top: 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .main-content {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .grid-2col, .grid-2col-equal {
+    grid-template-columns: 1fr;
+  }
+
+  .ats-perf-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ats-score-hero {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .dash-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+  }
+
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-box {
+    padding: 1.25rem;
+    width: 95%;
+  }
+}

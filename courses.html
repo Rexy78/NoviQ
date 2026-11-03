@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Courses - Career Nova</title>
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/animations.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <div id="sidebar-container"></div>
+
+    <main class="main-content">
+      <div class="dash-header">
+        <div>
+          <h1 class="page-title">Course Recommendations</h1>
+          <p class="page-subtitle">Curated learning paths directly connected to your detected technical skill gaps</p>
+        </div>
+        <div>
+          <span class="target-role-pill" id="course-role-pill">Target Role: Loading...</span>
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:0.5rem;">
+        <h3 style="color:var(--text-dark);">Recommended Skill Courses</h3>
+        <button class="btn btn-outline btn-sm" onclick="Nova.ask('Why were these specific courses recommended for my skill gaps?')" style="display:inline-flex; align-items:center; gap:0.3rem;">
+          <span>Explain Courses with Nova</span>
+        </button>
+      </div>
+
+      <div id="courses-filter-bar" style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:1.25rem;"></div>
+
+      <div class="skills-category-grid animate-fade-in" id="courses-grid-container">
+        <div class="skeleton-box" style="height:220px; width:100%;"></div>
+        <div class="skeleton-box" style="height:220px; width:100%;"></div>
+        <div class="skeleton-box" style="height:220px; width:100%;"></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/icons.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/nav.js"></script>
+  <script src="/js/chatbot.js"></script>
+  <script src="/js/courses.js"></script>
+</body>
+</html>

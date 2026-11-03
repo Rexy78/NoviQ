@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ATS Score - Career Nova</title>
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/ats.css">
+  <link rel="stylesheet" href="/css/animations.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <div id="sidebar-container"></div>
+
+    <main class="main-content">
+      <!-- Dashboard Header -->
+      <div class="dash-header">
+        <div>
+          <h1 class="page-title">ATS Compatibility Dashboard</h1>
+          <p class="page-subtitle">Understand how Applicant Tracking Systems evaluate your resume for your target role and what to improve first.</p>
+        </div>
+        <div>
+          <span class="target-role-pill" id="ats-role-pill">
+            Target Role: Loading...
+          </span>
+        </div>
+      </div>
+
+      <!-- Hero ATS Overview Section -->
+      <div class="ats-score-hero animate-fade-in" id="ats-overview-hero">
+        <div style="flex:1; min-width:280px;">
+          <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.5rem; flex-wrap:wrap;">
+            <span style="font-size:0.8rem; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em;">Target Role Evaluation</span>
+            <span class="badge badge-purple" style="font-size:0.8rem;" id="ats-target-role-badge">Software Engineer</span>
+          </div>
+          <h2 style="font-size:2rem; color:var(--text-dark); margin-bottom:0.5rem; font-weight:800;" id="ats-hero-title">Evaluating Compatibility...</h2>
+          <p style="color:var(--text-main); font-size:0.95rem; max-width:580px; line-height:1.5; margin-bottom:1.25rem;" id="ats-hero-desc">
+            Your resume is being evaluated against automated system requirements.
+          </p>
+
+          <div style="display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap;" id="ats-hero-ctas">
+            <button class="btn btn-primary" onclick="scrollToSection('ats-priorities-section')" style="display:inline-flex; align-items:center; gap:0.4rem; font-weight:700;">
+              <span>See What To Fix First &rarr;</span>
+            </button>
+            <a href="/skills.html" class="btn btn-outline" style="display:inline-flex; align-items:center; gap:0.4rem;">
+              <span>Explore Skill Gaps &rarr;</span>
+            </a>
+            <div id="ats-risk-badge-box" style="margin-left:auto;">
+              <span class="badge badge-purple" style="font-size:0.85rem; padding:0.4rem 0.9rem;">Calculating Risk...</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gauge-container">
+          <svg class="gauge-svg" viewBox="0 0 160 160">
+            <circle class="gauge-bg" cx="80" cy="80" r="70"></circle>
+            <circle class="gauge-fill" id="gauge-circle-fill" cx="80" cy="80" r="70"></circle>
+          </svg>
+          <div class="gauge-text-overlay">
+            <div class="gauge-score-val" id="gauge-score-num">0</div>
+            <div class="gauge-score-max">/ 100</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ATS Performance Areas Grid (Structure, Formatting, Parsing, Keyword Coverage) -->
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:0.5rem;">
+        <h3 style="font-size:1.2rem; color:var(--text-dark);">ATS Performance Areas</h3>
+        <span style="font-size:0.85rem; color:var(--text-muted);">Click any card for detailed diagnostics</span>
+      </div>
+
+      <div class="ats-perf-grid animate-fade-in animate-stagger-1" style="margin-bottom:1.5rem;">
+        <!-- 1. Keyword Coverage Card -->
+        <div class="ats-perf-card" id="card-keywords" onclick="openDetailModal('keywords')">
+          <div class="ats-card-header">
+            <div class="ats-card-title-group">
+              <div class="ats-card-icon" id="icon-kw"></div>
+              <div>
+                <div class="ats-card-name">Keyword Coverage</div>
+                <div style="font-size:0.8rem; color:var(--text-muted);">35% Score Weight • <strong style="color:var(--primary-purple-dark);" id="kw-contrib-val">+0 pts</strong></div>
+              </div>
+            </div>
+            <div class="ats-card-score" id="score-kw">--%</div>
+          </div>
+          <p class="ats-card-desc" id="desc-kw">Loading keyword match performance...</p>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span class="badge badge-purple" id="badge-kw">Pass</span>
+            <span style="font-size:0.825rem; font-weight:700; color:var(--primary-purple); display:flex; align-items:center; gap:0.2rem;">View Details &rarr;</span>
+          </div>
+        </div>
+
+        <!-- 2. Resume Structure Card -->
+        <div class="ats-perf-card" id="card-structure" onclick="openDetailModal('structure')">
+          <div class="ats-card-header">
+            <div class="ats-card-title-group">
+              <div class="ats-card-icon" id="icon-struct"></div>
+              <div>
+                <div class="ats-card-name">Resume Structure</div>
+                <div style="font-size:0.8rem; color:var(--text-muted);">25% Score Weight • <strong style="color:var(--primary-purple-dark);" id="struct-contrib-val">+0 pts</strong></div>
+              </div>
+            </div>
+            <div class="ats-card-score" id="score-struct">--%</div>
+          </div>
+          <p class="ats-card-desc" id="desc-struct">Loading structural analysis...</p>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span class="badge badge-purple" id="badge-struct">Pass</span>
+            <span style="font-size:0.825rem; font-weight:700; color:var(--primary-purple); display:flex; align-items:center; gap:0.2rem;">View Details &rarr;</span>
+          </div>
+        </div>
+
+        <!-- 3. Formatting Compatibility Card -->
+        <div class="ats-perf-card" id="card-formatting" onclick="openDetailModal('formatting')">
+          <div class="ats-card-header">
+            <div class="ats-card-title-group">
+              <div class="ats-card-icon" id="icon-format"></div>
+              <div>
+                <div class="ats-card-name">Formatting Safety</div>
+                <div style="font-size:0.8rem; color:var(--text-muted);">20% Score Weight • <strong style="color:var(--primary-purple-dark);" id="fmt-contrib-val">+0 pts</strong></div>
+              </div>
+            </div>
+            <div class="ats-card-score" id="score-format">--%</div>
+          </div>
+          <p class="ats-card-desc" id="desc-format">Loading formatting evaluation...</p>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span class="badge badge-purple" id="badge-format">Pass</span>
+            <span style="font-size:0.825rem; font-weight:700; color:var(--primary-purple); display:flex; align-items:center; gap:0.2rem;">View Details &rarr;</span>
+          </div>
+        </div>
+
+        <!-- 4. Parsing Compatibility Card -->
+        <div class="ats-perf-card" id="card-parsing" onclick="openDetailModal('parsing')">
+          <div class="ats-card-header">
+            <div class="ats-card-title-group">
+              <div class="ats-card-icon" id="icon-parse"></div>
+              <div>
+                <div class="ats-card-name">Parsing Accuracy</div>
+                <div style="font-size:0.8rem; color:var(--text-muted);">20% Score Weight • <strong style="color:var(--primary-purple-dark);" id="parse-contrib-val">+0 pts</strong></div>
+              </div>
+            </div>
+            <div class="ats-card-score" id="score-parse">--%</div>
+          </div>
+          <p class="ats-card-desc" id="desc-parse">Loading entity parsing breakdown...</p>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span class="badge badge-purple" id="badge-parse">Pass</span>
+            <span style="font-size:0.825rem; font-weight:700; color:var(--primary-purple); display:flex; align-items:center; gap:0.2rem;">View Details &rarr;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mathematical Score Reconciliation Bar -->
+      <div class="card animate-fade-in animate-stagger-2" style="margin-bottom:2rem; background:var(--bg-main);" id="ats-score-reconciliation-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.75rem;">
+          <h4 style="font-size:1.05rem; color:var(--text-dark); display:flex; align-items:center; gap:0.4rem; margin:0;">
+            <span>Canonical Score Reconciliation</span>
+          </h4>
+          <span class="badge badge-purple" id="reconcile-final-badge" style="font-weight:700;">Canonical ATS Score: -- / 100</span>
+        </div>
+        <div style="background:#FFFFFF; border:1px solid var(--border-color); border-radius:var(--radius-md); padding:0.85rem 1.25rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+          <div style="font-size:0.875rem; color:var(--text-main);">
+            Formula: <strong style="color:var(--text-dark);" id="recon-total-formula">7 + 10 + 15 + 17 = 49 / 100</strong>
+          </div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">
+            Keywords (35%) + Structure (25%) + Formatting (20%) + Parsing (20%)
+          </div>
+        </div>
+      </div>
+
+      <!-- What's Helping & What's Holding You Back Cards -->
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:1.5rem; margin-bottom:2rem;">
+        <!-- Helping Card -->
+        <div class="card animate-fade-in" style="border-top:4px solid var(--status-pass);">
+          <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:1rem;">
+            <div style="width:32px; height:32px; border-radius:50%; background:#DCFCE7; color:var(--status-pass); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1rem;">✓</div>
+            <h3 style="font-size:1.1rem; color:var(--text-dark); margin:0;">WHAT'S HELPING YOUR RESUME</h3>
+          </div>
+          <ul id="helping-items-list" style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.75rem;">
+            <li style="color:var(--text-muted); font-size:0.875rem;">Loading positive findings...</li>
+          </ul>
+        </div>
+
+        <!-- Holding Back Card -->
+        <div class="card animate-fade-in" style="border-top:4px solid var(--status-warning);">
+          <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:1rem;">
+            <div style="width:32px; height:32px; border-radius:50%; background:#FEF3C7; color:var(--status-warning); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1rem;">!</div>
+            <h3 style="font-size:1.1rem; color:var(--text-dark); margin:0;">WHAT'S HOLDING YOUR RESUME BACK</h3>
+          </div>
+          <ul id="holding-back-items-list" style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.75rem;">
+            <li style="color:var(--text-muted); font-size:0.875rem;">Loading friction points...</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Your Top Priorities Section (Fix This First) -->
+      <div class="card animate-fade-in animate-stagger-3" style="margin-bottom:2rem;" id="ats-priorities-section">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:0.5rem;">
+          <div>
+            <h3 style="color:var(--text-dark); display:flex; align-items:center; gap:0.5rem; margin:0;" id="issues-heading">
+              Your Top Priorities
+            </h3>
+            <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.2rem;">
+              Highest-impact improvements ranked by potential score increase
+            </div>
+          </div>
+          <span class="badge badge-warning" id="issues-count-badge">0 Issues Detected</span>
+        </div>
+
+        <div id="priorities-cards-container" style="display:flex; flex-direction:column; gap:1rem;">
+          <div style="color:var(--text-muted); font-size:0.875rem; padding:1rem; text-align:center;">Loading priority recommendations...</div>
+        </div>
+      </div>
+
+      <!-- Role Alignment & Skill Evidence Intelligence Section -->
+      <div class="card animate-fade-in animate-stagger-2" style="margin-bottom:2rem; border-top:4px solid var(--primary-purple);" id="role-alignment-snapshot-section">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:1.25rem; flex-wrap:wrap; gap:0.75rem;">
+          <div>
+            <div style="display:flex; align-items:center; gap:0.5rem;">
+              <h3 style="font-size:1.25rem; color:var(--text-dark); margin:0;" id="snapshot-title">
+                Role Alignment & Evidence Snapshot
+              </h3>
+              <span class="badge badge-purple" style="font-size:0.8rem;" id="evidence-match-pct-badge">0% Requirement Fit</span>
+            </div>
+            <div style="font-size:0.875rem; color:var(--text-muted); font-weight:600; margin-top:0.25rem;" id="snapshot-target-role">
+              Target Role: Loading...
+            </div>
+          </div>
+          <a href="/skills.html" class="btn btn-primary btn-sm" style="display:inline-flex; align-items:center; gap:0.4rem;">
+            <span>Full Skill Gap Analysis &rarr;</span>
+          </a>
+        </div>
+
+        <!-- Sleek Multi-Segment Alignment Visual Bar -->
+        <div style="margin-bottom:1.5rem; background:var(--bg-main); padding:1.25rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+          <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.85rem; font-weight:700; margin-bottom:0.75rem; color:var(--text-dark); flex-wrap:wrap; gap:0.5rem;">
+            <span style="display:flex; align-items:center; gap:0.35rem;">
+              <span>Core Requirements Distribution</span>
+            </span>
+            <span id="evidence-bar-label" style="color:var(--primary-purple-dark); font-weight:800;">0% Covered</span>
+          </div>
+
+          <!-- Segmented High-Contrast Progress Indicator -->
+          <div style="height:14px; border-radius:8px; background:#E2E8F0; display:flex; overflow:hidden; box-shadow:inset 0 1px 2px rgba(0,0,0,0.06);" id="evidence-progress-bar">
+            <div id="bar-strong" style="width:0%; background:var(--status-pass); transition:width 0.8s ease;" title="Verified Evidence"></div>
+            <div id="bar-verify" style="width:0%; background:var(--status-warning); transition:width 0.8s ease;" title="Partial Evidence"></div>
+            <div id="bar-none" style="width:0%; background:var(--status-critical); transition:width 0.8s ease;" title="Missing Evidence"></div>
+          </div>
+
+          <!-- Legend Tags -->
+          <div style="display:flex; justify-content:space-between; margin-top:0.75rem; font-size:0.8rem; color:var(--text-muted); flex-wrap:wrap; gap:0.5rem;">
+            <div style="display:flex; align-items:center; gap:0.4rem;">
+              <span style="width:10px; height:10px; border-radius:50%; background:var(--status-pass); display:inline-block;"></span>
+              <span><strong>Verified:</strong> <span id="legend-strong-val">0</span></span>
+            </div>
+            <div style="display:flex; align-items:center; gap:0.4rem;">
+              <span style="width:10px; height:10px; border-radius:50%; background:var(--status-warning); display:inline-block;"></span>
+              <span><strong>Partial / Mentioned:</strong> <span id="legend-verify-val">0</span></span>
+            </div>
+            <div style="display:flex; align-items:center; gap:0.4rem;">
+              <span style="width:10px; height:10px; border-radius:50%; background:var(--status-critical); display:inline-block;"></span>
+              <span><strong>Missing Evidence:</strong> <span id="legend-none-val">0</span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3-Column Requirement Evidence Cards with Skill Tags -->
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:1.25rem;" id="snapshot-evidence-grid">
+          <!-- Column 1: Verified Core Requirements -->
+          <div style="background:#FFFFFF; border:1px solid var(--border-color); border-top:3px solid var(--status-pass); border-radius:var(--radius-md); padding:1.15rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+              <div style="font-size:0.9rem; font-weight:700; color:var(--text-dark); display:flex; align-items:center; gap:0.35rem;">
+                <span style="color:var(--status-pass); font-weight:900;">✓</span> Verified Skills
+              </div>
+              <span class="badge badge-pass" id="evidence-strong-count">0</span>
+            </div>
+            <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.85rem; line-height:1.4;">
+              Explicit proof found in project descriptions or experience bullets.
+            </div>
+            <div id="snapshot-verified-tags" style="display:flex; flex-wrap:wrap; gap:0.4rem; min-height:40px;">
+              <span style="font-size:0.8rem; color:var(--text-muted);">None detected</span>
+            </div>
+          </div>
+
+          <!-- Column 2: Partial / Needs Evidence -->
+          <div style="background:#FFFFFF; border:1px solid var(--border-color); border-top:3px solid var(--status-warning); border-radius:var(--radius-md); padding:1.15rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+              <div style="font-size:0.9rem; font-weight:700; color:var(--text-dark); display:flex; align-items:center; gap:0.35rem;">
+                <span style="color:var(--status-warning); font-weight:900;">!</span> Partial Evidence
+              </div>
+              <span class="badge badge-warning" id="evidence-verify-count">0</span>
+            </div>
+            <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.85rem; line-height:1.4;">
+              Listed in skills section but needs quantified project/job context.
+            </div>
+            <div id="snapshot-partial-tags" style="display:flex; flex-wrap:wrap; gap:0.4rem; min-height:40px;">
+              <span style="font-size:0.8rem; color:var(--text-muted);">None detected</span>
+            </div>
+          </div>
+
+          <!-- Column 3: Missing Core Requirements -->
+          <div style="background:#FFFFFF; border:1px solid var(--border-color); border-top:3px solid var(--status-critical); border-radius:var(--radius-md); padding:1.15rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+              <div style="font-size:0.9rem; font-weight:700; color:var(--text-dark); display:flex; align-items:center; gap:0.35rem;">
+                <span style="color:var(--status-critical); font-weight:900;">&times;</span> Missing Requirements
+              </div>
+              <span class="badge badge-critical" id="evidence-none-count">0</span>
+            </div>
+            <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.85rem; line-height:1.4;">
+              Key target role requirements missing from resume text.
+            </div>
+            <div id="snapshot-missing-tags" style="display:flex; flex-wrap:wrap; gap:0.4rem; min-height:40px;">
+              <span style="font-size:0.8rem; color:var(--text-muted);">None detected</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:1.25rem; background:var(--bg-main); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:0.85rem 1.1rem; font-size:0.825rem; color:var(--text-muted); line-height:1.5; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+          <div>
+            <strong>Core Role Requirements vs. Additional Skills:</strong> "Core Role Requirements" directly impact ATS keyword scores. Additional skills on your resume are cataloged without penalty.
+          </div>
+          <span style="font-weight:700; color:var(--primary-purple-dark); white-space:nowrap;" id="snapshot-total-req-label">Total Requirements: 0</span>
+        </div>
+      </div>
+
+      <!-- Entity Data Extraction Section -->
+      <div class="card animate-fade-in animate-stagger-3" style="margin-bottom:2rem;" id="entity-extraction-card">
+        <h3 style="color:var(--text-dark); margin-bottom:0.5rem; display:flex; align-items:center; gap:0.5rem; margin-top:0;">
+          Entity Data Extraction
+        </h3>
+        <p style="font-size:0.875rem; color:var(--text-muted); margin-bottom:1.25rem;">
+          Key candidate details and structural counts parsed from your uploaded document:
+        </p>
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:1rem;">
+          <div style="background:var(--bg-main); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:0.85rem 1rem; min-width:0;">
+            <div style="font-size:0.775rem; color:var(--text-muted); font-weight:600;">Candidate Name</div>
+            <div style="font-size:0.95rem; font-weight:700; color:var(--text-dark); margin-top:0.2rem; word-break:break-word;" id="entity-name">Not detected</div>
+          </div>
+          <div style="background:var(--bg-main); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:0.85rem 1rem; min-width:0;">
+            <div style="font-size:0.775rem; color:var(--text-muted); font-weight:600;">Email Address</div>
+            <div style="font-size:0.95rem; font-weight:700; color:var(--text-dark); margin-top:0.2rem; word-break:break-all;" id="entity-email">Not detected</div>
+          </div>
+          <div style="background:var(--bg-main); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:0.85rem 1rem; min-width:0;">
+            <div style="font-size:0.775rem; color:var(--text-muted); font-weight:600;">Phone / Contact</div>
+            <div style="font-size:0.95rem; font-weight:700; color:var(--text-dark); margin-top:0.2rem; word-break:break-word;" id="entity-phone">Not detected</div>
+          </div>
+          <div style="background:var(--bg-main); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:0.85rem 1rem; min-width:0;">
+            <div style="font-size:0.775rem; color:var(--text-muted); font-weight:600;">Extracted Resume Skills</div>
+            <div style="font-size:0.95rem; font-weight:700; color:var(--primary-purple-dark); margin-top:0.2rem;" id="entity-skills-count">0 detected</div>
+          </div>
+          <div style="background:var(--bg-main); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:0.85rem 1rem; min-width:0;">
+            <div style="font-size:0.775rem; color:var(--text-muted); font-weight:600;">Extracted Projects</div>
+            <div style="font-size:0.95rem; font-weight:700; color:var(--primary-purple-dark); margin-top:0.2rem;" id="entity-projects-count">0 detected</div>
+          </div>
+          <div style="background:var(--bg-main); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:0.85rem 1rem; min-width:0;">
+            <div style="font-size:0.775rem; color:var(--text-muted); font-weight:600;">Extracted Experience</div>
+            <div style="font-size:0.95rem; font-weight:700; color:var(--primary-purple-dark); margin-top:0.2rem;" id="entity-exp-count">0 detected</div>
+          </div>
+          <div style="background:var(--bg-main); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:0.85rem 1rem; min-width:0;">
+            <div style="font-size:0.775rem; color:var(--text-muted); font-weight:600;">Education Entries</div>
+            <div style="font-size:0.95rem; font-weight:700; color:var(--primary-purple-dark); margin-top:0.2rem;" id="entity-edu-count">0 detected</div>
+          </div>
+          <div style="background:var(--bg-main); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:0.85rem 1rem; min-width:0;">
+            <div style="font-size:0.775rem; color:var(--text-muted); font-weight:600;">Certifications</div>
+            <div style="font-size:0.95rem; font-weight:700; color:var(--primary-purple-dark); margin-top:0.2rem;" id="entity-cert-count">0 detected</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key ATS Insight Banner -->
+      <div class="card animate-fade-in animate-stagger-3" style="margin-bottom:2.5rem; background:var(--bg-purple-light); border-color:var(--border-purple);">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.75rem; flex-wrap:wrap; gap:1rem;">
+          <div>
+            <h3 style="color:var(--primary-purple-dark); margin:0; font-size:1.15rem;" id="xai-heading">
+              Key ATS AI Insight
+            </h3>
+            <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.2rem;">
+              Understand what influenced your score and what to improve first.
+            </div>
+          </div>
+          <button class="btn btn-primary" onclick="openXaiExplanationModal()" style="display:inline-flex; align-items:center; gap:0.4rem; padding:0.55rem 1.15rem; font-weight:700;">
+            <span>Explain My ATS Score &rarr;</span>
+          </button>
+        </div>
+
+        <p style="font-size:0.925rem; color:var(--text-main); line-height:1.5; margin:0;" id="xai-why-text">
+          Your resume successfully communicates general background, but keyword coverage and formatting choices impact automated ATS alignment for your target role.
+        </p>
+      </div>
+    </main>
+  </div>
+
+  <!-- Dedicated Nova — ATS Score Explanation Screen/Modal -->
+  <div class="modal-overlay" id="xai-explanation-modal" style="display:none;">
+    <div class="modal-box" style="max-width:820px; width:92%; max-height:88vh; overflow-y:auto; padding:1.75rem;">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; border-bottom:1px solid var(--border-color); padding-bottom:1rem; margin-bottom:1.25rem;">
+        <div>
+          <div style="display:flex; align-items:center; gap:0.5rem; color:var(--primary-purple-dark); font-weight:800; font-size:1.25rem;">
+            <span id="xai-icon-sparkles"></span> Nova — ATS Score Explanation
+          </div>
+          <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.2rem;">
+            Causal Reasoning Layer powered by Canonical ATS Analysis
+          </div>
+        </div>
+        <button class="modal-close-btn" onclick="closeXaiExplanationModal()" style="font-size:1.5rem; line-height:1; background:none; border:none; cursor:pointer;">&times;</button>
+      </div>
+
+      <!-- Header Banner -->
+      <div style="background:var(--bg-purple-light); border:1px solid var(--border-purple); border-radius:var(--radius-lg); padding:1.25rem; margin-bottom:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+        <div>
+          <div style="font-size:0.8rem; color:var(--text-muted); font-weight:600; text-transform:uppercase;">Canonical ATS Score</div>
+          <div style="font-size:2rem; font-weight:800; color:var(--primary-purple-dark);" id="xai-m-score">-- / 100</div>
+        </div>
+        <div>
+          <div style="font-size:0.8rem; color:var(--text-muted); font-weight:600; text-transform:uppercase;">ATS Risk Level</div>
+          <div id="xai-m-risk-badge"><span class="badge badge-warning">Moderate Risk</span></div>
+        </div>
+        <div>
+          <div style="font-size:0.8rem; color:var(--text-muted); font-weight:600; text-transform:uppercase;">Target Role</div>
+          <div style="font-size:1.1rem; font-weight:700; color:var(--text-dark);" id="xai-m-role">Software Engineer</div>
+        </div>
+      </div>
+
+      <!-- Section 1: WHY YOUR SCORE IS X -->
+      <div style="margin-bottom:1.25rem; background:#FFFFFF; border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1.25rem;">
+        <h4 style="font-size:1.05rem; color:var(--primary-purple-dark); margin-bottom:0.75rem; text-transform:uppercase; letter-spacing:0.04em;">
+          WHY YOUR SCORE IS <span id="xai-m-why-num">--</span>
+        </h4>
+        <p style="font-size:0.9rem; color:var(--text-main); line-height:1.5; margin-bottom:1rem;" id="xai-m-why-desc">
+          Your canonical score is calculated from four weighted performance dimensions based strictly on evidence in your uploaded resume document.
+        </p>
+
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap:0.75rem; margin-bottom:0.85rem;">
+          <div style="background:var(--bg-main); padding:0.75rem 1rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
+            <div style="font-size:0.75rem; color:var(--text-muted); font-weight:600;">Keyword Coverage (35%)</div>
+            <div style="font-weight:800; color:var(--text-dark); font-size:1rem; margin-top:0.2rem;" id="xai-m-kw-stat">--% &rarr; +0 pts</div>
+          </div>
+          <div style="background:var(--bg-main); padding:0.75rem 1rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
+            <div style="font-size:0.75rem; color:var(--text-muted); font-weight:600;">Resume Structure (25%)</div>
+            <div style="font-weight:800; color:var(--text-dark); font-size:1rem; margin-top:0.2rem;" id="xai-m-struct-stat">--% &rarr; +0 pts</div>
+          </div>
+          <div style="background:var(--bg-main); padding:0.75rem 1rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
+            <div style="font-size:0.75rem; color:var(--text-muted); font-weight:600;">Formatting Safety (20%)</div>
+            <div style="font-weight:800; color:var(--text-dark); font-size:1rem; margin-top:0.2rem;" id="xai-m-fmt-stat">--% &rarr; +0 pts</div>
+          </div>
+          <div style="background:var(--bg-main); padding:0.75rem 1rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
+            <div style="font-size:0.75rem; color:var(--text-muted); font-weight:600;">Parsing Accuracy (20%)</div>
+            <div style="font-weight:800; color:var(--text-dark); font-size:1rem; margin-top:0.2rem;" id="xai-m-parse-stat">--% &rarr; +0 pts</div>
+          </div>
+        </div>
+        <div style="font-size:0.85rem; font-weight:700; color:var(--primary-purple-dark); background:var(--bg-purple-light); padding:0.6rem 0.85rem; border-radius:var(--radius-sm);" id="xai-m-formula">
+          Canonical Reconciliation: --
+        </div>
+      </div>
+
+      <!-- Section 2: WHAT HELPED YOUR SCORE -->
+      <div style="margin-bottom:1.25rem; background:#FFFFFF; border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1.25rem;">
+        <h4 style="font-size:1.05rem; color:var(--status-pass); margin-bottom:0.75rem; text-transform:uppercase; letter-spacing:0.04em;">
+          WHAT HELPED YOUR SCORE
+        </h4>
+        <ul style="margin:0; padding-left:1.25rem; font-size:0.9rem; color:var(--text-main); line-height:1.6;" id="xai-m-helped">
+          <!-- populated dynamically -->
+        </ul>
+      </div>
+
+      <!-- Section 3: WHAT LOWERED YOUR SCORE -->
+      <div style="margin-bottom:1.25rem; background:#FFFFFF; border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1.25rem;">
+        <h4 style="font-size:1.05rem; color:var(--status-critical); margin-bottom:0.75rem; text-transform:uppercase; letter-spacing:0.04em;">
+          WHAT LOWERED YOUR SCORE
+        </h4>
+        <ul style="margin:0; padding-left:1.25rem; font-size:0.9rem; color:var(--text-main); line-height:1.6;" id="xai-m-lowered">
+          <!-- populated dynamically -->
+        </ul>
+      </div>
+
+      <!-- Section 4: WHY THIS MATTERS (PRACTICAL ATS CONSEQUENCE) -->
+      <div style="margin-bottom:1.25rem; background:#FFFFFF; border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1.25rem;">
+        <h4 style="font-size:1.05rem; color:var(--primary-purple-dark); margin-bottom:0.75rem; text-transform:uppercase; letter-spacing:0.04em;">
+          WHY THIS MATTERS (ATS CONSEQUENCES)
+        </h4>
+        <p style="font-size:0.9rem; color:var(--text-main); line-height:1.6; margin:0;" id="xai-m-matters">
+          Automated screening software relies on exact keyword matching and standard section headings. Keyword coverage and formatting alignment ensure your resume is indexed accurately by recruiters.
+        </p>
+      </div>
+
+      <!-- Section 5: HIGHEST-IMPACT IMPROVEMENT -->
+      <div style="margin-bottom:1.25rem; background:var(--bg-purple-light); border:1px solid var(--border-purple); border-radius:var(--radius-md); padding:1.25rem;">
+        <h4 style="font-size:1.05rem; color:var(--primary-purple-dark); margin-bottom:0.5rem; text-transform:uppercase; letter-spacing:0.04em;">
+          HIGHEST-IMPACT IMPROVEMENT
+        </h4>
+        <div style="font-size:0.925rem; font-weight:700; color:var(--text-dark); margin-bottom:0.35rem;" id="xai-m-top-action-title">
+          Standardize Section Headings & Document Role Requirements
+        </div>
+        <p style="font-size:0.875rem; color:var(--text-main); line-height:1.5; margin:0;" id="xai-m-top-action-desc">
+          Ensure section headings are clear and explicitly articulate target role technologies in your project or experience descriptions.
+        </p>
+      </div>
+
+      <!-- Section 6: DISCLAIMER -->
+      <div style="background:var(--bg-main); border-left:4px solid var(--primary-purple); padding:0.85rem 1.1rem; border-radius:var(--radius-sm); margin-bottom:1.5rem; font-size:0.85rem; color:var(--text-muted); line-height:1.5;">
+        <strong>WHAT THIS DOES NOT MEAN:</strong> "Not finding evidence in your resume does not mean you do not have the skill. It only means the current document does not clearly demonstrate it."
+      </div>
+
+      <!-- Footer Controls -->
+      <div style="display:flex; justify-content:flex-end; align-items:center; gap:0.75rem; border-top:1px solid var(--border-color); padding-top:1rem; flex-wrap:wrap;">
+        <button class="btn btn-secondary" onclick="closeXaiExplanationModal()">Close</button>
+        <a href="/skills.html" class="btn btn-outline" style="text-decoration:none; display:inline-flex; align-items:center; gap:0.35rem;">
+          <span>Review Skill Evidence &rarr;</span>
+        </a>
+        <button class="btn btn-primary" onclick="askNovaFollowUp()" style="display:inline-flex; align-items:center; gap:0.5rem; font-weight:700;">
+          <span>Ask Nova a Follow-up Question &rarr;</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Detail Modal View -->
+  <div class="modal-overlay" id="ats-detail-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="modal-title" style="font-size:1.25rem;">Performance Detail View</h3>
+        <button class="modal-close-btn" onclick="closeDetailModal()">&times;</button>
+      </div>
+      <div id="modal-body-content">
+        Loading breakdown...
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/icons.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/nav.js"></script>
+  <script src="/js/chatbot.js"></script>
+  <script src="/js/ats.js"></script>
+</body>
+</html>

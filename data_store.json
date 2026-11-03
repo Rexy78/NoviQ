@@ -1,0 +1,1149 @@
+{
+  "users": [
+    {
+      "_id": "id_1785311943324_77wvy7",
+      "id": "id_1785311943324_77wvy7",
+      "name": "Pooja",
+      "email": "pooja@gmail.com",
+      "passwordHash": "$2b$10$qWrq2kzEHgTeyKCNP9m9muyZgLZxLqP.VUEy34diSMDo2cZ2scL6a",
+      "profileRole": "Software Professional",
+      "createdAt": "2026-07-29T07:59:03.324Z",
+      "updatedAt": "2026-07-29T07:59:03.324Z"
+    }
+  ],
+  "resumes": [
+    {
+      "_id": "id_1785312266038_z17s4f",
+      "id": "id_1785312266038_z17s4f",
+      "userId": "test-user-123",
+      "fileName": "John_Doe_Resume.pdf",
+      "fileType": "application/pdf",
+      "fileSize": 597,
+      "rawText": "John Doe Senior Software Engineer Experience JavaScript TypeScript React Node Express Web",
+      "parsedData": {
+        "characterCount": 89,
+        "wordCount": 12
+      },
+      "createdAt": "2026-07-29T08:04:26.038Z",
+      "updatedAt": "2026-07-29T08:04:26.038Z"
+    }
+  ],
+  "analyses": [
+    {
+      "_id": "id_1785312292214_b7xfrm",
+      "id": "id_1785312292214_b7xfrm",
+      "createdAt": "2026-07-29T08:04:52.213Z",
+      "updatedAt": "2026-07-29T08:04:52.214Z",
+      "userId": "test-user-123",
+      "resumeId": "id_1785312266038_z17s4f",
+      "resumeFileName": "John_Doe_Resume.pdf",
+      "targetRole": "Senior Full Stack Engineer",
+      "rawText": "John Doe Senior Software Engineer Experience JavaScript TypeScript React Node Express Web",
+      "overallScore": 25,
+      "overallScoreExplanation": "Your resume has a canonical ATS score of 25/100 (High Risk) for Senior Full Stack Engineer.",
+      "atsScore": 25,
+      "atsRiskLevel": "High Risk",
+      "atsBreakdown": {
+        "keywordMatch": {
+          "score": 19,
+          "status": "Warning",
+          "details": "Extracted 5 unique skills from resume text. Evaluated against 13 core Senior Full Stack Engineer requirements: 0 Strong/Practical Matches, 5 Learning/Mentioned (Needs Verification), and 8 Requirements Without Resume Evidence.",
+          "requiredSkills": [
+            "JavaScript",
+            "TypeScript",
+            "React",
+            "Node.js",
+            "Express",
+            "SQL",
+            "PostgreSQL",
+            "MongoDB",
+            "AWS",
+            "Docker",
+            "Git",
+            "REST APIs",
+            "CI/CD",
+            "System Architecture"
+          ],
+          "matchedSkills": [],
+          "partialSkills": [
+            "JavaScript",
+            "Node.js",
+            "React.js",
+            "TypeScript",
+            "Express.js"
+          ],
+          "missingSkills": [
+            "REST APIs",
+            "SQL",
+            "Git / Version Control",
+            "Docker",
+            "CI/CD",
+            "Python",
+            "SQL / PostgreSQL / MongoDB",
+            "Docker / AWS / CI/CD"
+          ]
+        },
+        "structure": {
+          "score": 20,
+          "status": "Critical",
+          "details": "The document lacks structured section headers, timeline details, job titles, and clear bullet points required for standard ATS section parsing.",
+          "sections": [
+            {
+              "name": "Summary",
+              "status": "Missing",
+              "quality": "N/A",
+              "recommendation": "If you have professional experience, add a dedicated Professional Summary highlighting your full stack architectural capabilities and career background."
+            },
+            {
+              "name": "Skills",
+              "status": "Needs Revision",
+              "quality": "Weak",
+              "recommendation": "Organize technical skills into clear categories such as Languages, Frontend, Backend, Databases, and Cloud/Tools."
+            },
+            {
+              "name": "Experience",
+              "status": "Not Required (Early Career)",
+              "quality": "N/A",
+              "recommendation": "Professional experience section not detected. Ensure projects, education, and technical skills are prominently displayed."
+            },
+            {
+              "name": "Projects",
+              "status": "Missing",
+              "quality": "N/A",
+              "recommendation": "If you have personal or professional full stack projects, document them clearly with target outcomes and full stack technologies used."
+            },
+            {
+              "name": "Education",
+              "status": "Missing",
+              "quality": "N/A",
+              "recommendation": "If applicable, include an Education section detailing your degree, institution, and graduation year."
+            }
+          ]
+        },
+        "formatting": {
+          "score": 30,
+          "status": "Critical",
+          "details": "Resume content appears as an unformatted stream of keywords without structural layout or standard ATS headers.",
+          "checks": [
+            {
+              "name": "Single-Column Flow",
+              "status": "Safe",
+              "note": "Standard Single-Column Layout Detected."
+            },
+            {
+              "name": "Standard Headings",
+              "status": "Risk",
+              "note": "No clear, standard ATS section headers (e.g., 'WORK EXPERIENCE', 'TECHNICAL SKILLS') were detected."
+            },
+            {
+              "name": "Font & Encoding",
+              "status": "Safe",
+              "note": "Standard font encoding detected; text content extracted cleanly."
+            }
+          ]
+        },
+        "parsing": {
+          "score": 35,
+          "status": "Critical",
+          "details": "Candidate name was successfully extracted, but no email, phone number, work history timeline, or educational background could be parsed.",
+          "detectedFields": {
+            "name": "John Doe",
+            "email": null,
+            "phone": null,
+            "skillsCount": 5,
+            "educationCount": 0,
+            "experienceCount": 0,
+            "projectsCount": 0,
+            "certificationsCount": 0,
+            "certificationStatus": "NOT_DETECTED",
+            "roleRequirementsCount": 13
+          }
+        }
+      },
+      "skillAnalysis": {
+        "currentMatchPct": 19,
+        "categories": [
+          {
+            "categoryName": "Web & API Engineering",
+            "category": "Web & API Engineering",
+            "skills": [
+              {
+                "skillName": "REST APIs",
+                "name": "REST APIs",
+                "status": "No Resume Evidence",
+                "evidenceLevel": "No Evidence",
+                "directMention": false,
+                "learningEvidence": false,
+                "projectEvidence": false,
+                "experienceEvidence": false,
+                "resumeEvidence": "none",
+                "verificationStatus": "Not Tested",
+                "verifiedLevel": "not_yet_verified",
+                "importance": "High",
+                "priorityGroup": "Core",
+                "evidence": "No resume evidence detected for Senior Full Stack Engineer requirement.",
+                "matched": false
+              }
+            ]
+          },
+          {
+            "categoryName": "Data & Databases",
+            "category": "Data & Databases",
+            "skills": [
+              {
+                "skillName": "SQL",
+                "name": "SQL",
+                "status": "No Resume Evidence",
+                "evidenceLevel": "No Evidence",
+                "directMention": false,
+                "learningEvidence": false,
+                "projectEvidence": false,
+                "experienceEvidence": false,
+                "resumeEvidence": "none",
+                "verificationStatus": "Not Tested",
+                "verifiedLevel": "not_yet_verified",
+                "importance": "High",
+                "priorityGroup": "Core",
+                "evidence": "No resume evidence detected for Senior Full Stack Engineer requirement.",
+                "matched": false
+              }
+            ]
+          },
+          {
+            "categoryName": "Core Engineering",
+            "category": "Core Engineering",
+            "skills": [
+              {
+                "skillName": "Git / Version Control",
+                "name": "Git / Version Control",
+                "status": "No Resume Evidence",
+                "evidenceLevel": "No Evidence",
+                "directMention": false,
+                "learningEvidence": false,
+                "projectEvidence": false,
+                "experienceEvidence": false,
+                "resumeEvidence": "none",
+                "verificationStatus": "Not Tested",
+                "verifiedLevel": "not_yet_verified",
+                "importance": "High",
+                "priorityGroup": "Core",
+                "evidence": "No resume evidence detected for Senior Full Stack Engineer requirement.",
+                "matched": false
+              }
+            ]
+          },
+          {
+            "categoryName": "Web & Frontend",
+            "category": "Web & Frontend",
+            "skills": [
+              {
+                "skillName": "JavaScript",
+                "name": "JavaScript",
+                "status": "Needs Verification",
+                "evidenceLevel": "Mentioned",
+                "directMention": true,
+                "learningEvidence": false,
+                "projectEvidence": false,
+                "experienceEvidence": false,
+                "resumeEvidence": "detected",
+                "verificationStatus": "Needs Practical Verification",
+                "verifiedLevel": "not_yet_verified",
+                "importance": "High",
+                "priorityGroup": "Core",
+                "evidence": "JavaScript listed under technical skills, but no supporting project or work experience evidence was found.",
+                "matched": false
+              },
+              {
+                "skillName": "React.js",
+                "name": "React.js",
+                "status": "Needs Verification",
+                "evidenceLevel": "Mentioned",
+                "directMention": true,
+                "learningEvidence": false,
+                "projectEvidence": false,
+                "experienceEvidence": false,
+                "resumeEvidence": "detected",
+                "verificationStatus": "Needs Practical Verification",
+                "verifiedLevel": "not_yet_verified",
+                "importance": "Medium",
+                "priorityGroup": "Important",
+                "evidence": "React.js listed under technical skills, but no supporting project or work experience evidence was found.",
+                "matched": false
+              },
+              {
+                "skillName": "TypeScript",
+                "name": "TypeScript",
+                "status": "Needs Verification",
+                "evidenceLevel": "Mentioned",
+                "directMention": true,
+                "learningEvidence": false,
+                "projectEvidence": false,
+                "experienceEvidence": false,
+                "resumeEvidence": "detected",
+                "verificationStatus": "Needs Practical Verification",
+                "verifiedLevel": "not_yet_verified",
+                "importance": "Medium",
+                "priorityGroup": "Important",
+                "evidence": "TypeScript listed under technical skills, but no supporting project or work experience evidence was found.",
+                "matched": false
+              }
+            ]
+          },
+          {
+            "categoryName": "Backend Engineering",
+            "category": "Backend Engineering",
+            "skills": [
+              {
+                "skillName": "Node.js",
+                "name": "Node.js",
+                "status": "Needs Verification",
+                "evidenceLevel": "Mentioned",
+                "directMention": true,
+                "learningEvidence": false,
+                "projectEvidence": false,
+                "experienceEvidence": false,
+                "resumeEvidence": "detected",
+                "verificationStatus": "Needs Practical Verification",
+                "verifiedLevel": "not_yet_verified",
+                "importance": "High",
+                "priorityGroup": "Core",
+                "evidence": "Node.js listed under technical skills, but no supporting project or work experience evidence was found.",
+                "matched": false
+              },
+              {
+                "skillName": "Python",
+                "name": "Python",
+                "status": "No Resume Evidence",
+                "evidenceLevel": "No Evidence",
+                "directMention": false,
+                "learningEvidence": false,
+                "projectEvidence": false,
+                "experienceEvidence": false,
+                "resumeEvidence": "none",
+                "verificationStatus": "Not Tested",
+                "verifiedLevel": "not_yet_verified",
+                "importance": "Low",
+                "priorityGroup": "Optional",
+                "evidence": "No resume evidence detected for Senior Full Stack Engineer requirement.",
+                "matched": false
+              }
+            ]
+          },
+          {
+            "categoryName": "DevOps & Deployment",
+            "category": "DevOps & Deployment",
+            "skills": [
+              {
+                "skillName": "Docker",
+                "name": "Docker",
+                "status": "No Resume Evidence",
+                "evidenceLevel": "No Evidence",
+                "directMention": false,
+                "learningEvidence": false,
+                "projectEvidence": false,
+                "experienceEvidence": false,
+                "resumeEvidence": "none",
+                "verificationStatus": "Not Tested",
+                "verifiedLevel": "not_yet_verified",
+                "importance": "Medium",
+                "priorityGroup": "Supporting",
+                "evidence": "No resume evidence detected for Senior Full Stack Engineer requirement.",
+                "matched": false
+              },
+              {
+                "skillName": "CI/CD",
+                "name": "CI/CD",
+                "status": "No Resume Evidence",
+                "evidenceLevel": "No Evidence",
+                "directMention": false,
+                "learningEvidence": false,
+                "projectEvidence": false,
+                "experienceEvidence": false,
+                "resumeEvidence": "none",
+                "verificationStatus": "Not Tested",
+                "verifiedLevel": "not_yet_verified",
+                "importance": "Medium",
+                "priorityGroup": "Supporting",
+                "evidence": "No resume evidence detected for Senior Full Stack Engineer requirement.",
+                "matched": false
+              }
+            ]
+          },
+          {
+            "categoryName": "Frameworks",
+            "category": "Frameworks",
+            "skills": [
+              {
+                "skillName": "Express.js",
+                "name": "Express.js",
+                "status": "Needs Verification",
+                "evidenceLevel": "Mentioned",
+                "directMention": true,
+                "learningEvidence": false,
+                "projectEvidence": false,
+                "experienceEvidence": false,
+                "resumeEvidence": "detected",
+                "verificationStatus": "Needs Practical Verification",
+                "verifiedLevel": "not_yet_verified",
+                "importance": "High",
+                "priorityGroup": "Supporting",
+                "evidence": "Express.js listed under technical skills, but no supporting project or work experience evidence was found.",
+                "matched": false
+              }
+            ]
+          },
+          {
+            "categoryName": "Databases",
+            "category": "Databases",
+            "skills": [
+              {
+                "skillName": "SQL / PostgreSQL / MongoDB",
+                "name": "SQL / PostgreSQL / MongoDB",
+                "status": "No Resume Evidence",
+                "evidenceLevel": "No Evidence",
+                "directMention": false,
+                "learningEvidence": false,
+                "projectEvidence": false,
+                "experienceEvidence": false,
+                "resumeEvidence": "none",
+                "verificationStatus": "Not Tested",
+                "verifiedLevel": "not_yet_verified",
+                "importance": "High",
+                "priorityGroup": "Supporting",
+                "evidence": "No resume evidence detected for Senior Full Stack Engineer requirement.",
+                "matched": false
+              }
+            ]
+          },
+          {
+            "categoryName": "DevOps",
+            "category": "DevOps",
+            "skills": [
+              {
+                "skillName": "Docker / AWS / CI/CD",
+                "name": "Docker / AWS / CI/CD",
+                "status": "No Resume Evidence",
+                "evidenceLevel": "No Evidence",
+                "directMention": false,
+                "learningEvidence": false,
+                "projectEvidence": false,
+                "experienceEvidence": false,
+                "resumeEvidence": "none",
+                "verificationStatus": "Not Tested",
+                "verifiedLevel": "not_yet_verified",
+                "importance": "High",
+                "priorityGroup": "Supporting",
+                "evidence": "No resume evidence detected for Senior Full Stack Engineer requirement.",
+                "matched": false
+              }
+            ]
+          }
+        ],
+        "strongSkills": [],
+        "partialSkills": [
+          "JavaScript",
+          "Node.js",
+          "React.js",
+          "TypeScript",
+          "Express.js"
+        ],
+        "missingSkills": [
+          "REST APIs",
+          "SQL",
+          "Git / Version Control",
+          "Docker",
+          "CI/CD",
+          "Python",
+          "SQL / PostgreSQL / MongoDB",
+          "Docker / AWS / CI/CD"
+        ],
+        "unique_detected_skills": [
+          "JavaScript",
+          "TypeScript",
+          "Node.js",
+          "Express.js",
+          "React.js"
+        ],
+        "required_role_skills_count": 13,
+        "matched_required_skills_count": 0,
+        "missing_required_skills_count": 8,
+        "skills_needing_verification_count": 5
+      },
+      "projectAnalysis": {
+        "projectRelevancePct": 0,
+        "complexityScore": 0,
+        "projectList": [],
+        "projects": [],
+        "relevanceScore": 20,
+        "technicalDepthScore": 0,
+        "technologyDiversityScore": 0,
+        "bestProject": "No strongly aligned project detected",
+        "summary": "Your current projects demonstrate foundational skills but provide limited evidence for the selected target role (Senior Full Stack Engineer).",
+        "missingProjectTypes": [
+          "Full-Stack REST APIs Workflow Application",
+          "Containerized SQL Microservices CI/CD Pipeline"
+        ],
+        "recommendedProjects": [
+          {
+            "title": "Full-Stack REST APIs Workflow Application",
+            "skillsCovered": [
+              "REST APIs",
+              "SQL",
+              "Git / Version Control"
+            ],
+            "why": "Directly closes priority gap in REST APIs."
+          },
+          {
+            "title": "Containerized SQL Microservices CI/CD Pipeline",
+            "skillsCovered": [
+              "SQL",
+              "CI/CD",
+              "Cloud Computing"
+            ],
+            "why": "Provides production evidence for containerization and automated deployments."
+          }
+        ]
+      },
+      "experienceAnalysis": {
+        "totalYears": 0,
+        "depthScore": 0,
+        "achievementsQualityScore": 0,
+        "bulletImprovements": [],
+        "note": "Professional experience not detected. For early-career profiles, practical projects, capstone implementations, and certifications serve as primary evidence."
+      },
+      "xaiExplanations": {
+        "measured": "Target expectations for a Senior Full Stack Engineer require verified expertise across modern frontend frameworks, backend web frameworks, relational/non-relational databases, cloud infrastructure, version control, and quantified engineering leadership.",
+        "whyScore": "Your canonical ATS score is 25/100 (High Risk) for Senior Full Stack Engineer. Formula: Keyword Coverage (7 pts) + Structure (5 pts) + Formatting Safety (6 pts) + Parsing Accuracy (7 pts) = 25/100.",
+        "evidenceFound": [],
+        "missingElements": [
+          "REST APIs — No Resume Evidence Detected",
+          "SQL — No Resume Evidence Detected",
+          "Git / Version Control — No Resume Evidence Detected",
+          "Docker — No Resume Evidence Detected",
+          "CI/CD — No Resume Evidence Detected",
+          "Python — No Resume Evidence Detected",
+          "SQL / PostgreSQL / MongoDB — No Resume Evidence Detected",
+          "Docker / AWS / CI/CD — No Resume Evidence Detected"
+        ],
+        "howToImprove": [
+          "Format the document into standard ATS sections: Summary, Skills, Experience, Projects, and Education.",
+          "If you have used database systems or cloud platforms in your work, explicitly list them in your technical skills and experience descriptions.",
+          "If you have professional experience, detail your positions with clear job titles, company names, start/end dates, and metric-driven bullet points."
+        ]
+      },
+      "roadmapStages": [
+        {
+          "stageId": "stage-1",
+          "stageName": "Stage 1: Core Prerequisites & Foundational Technical Gaps",
+          "timeframe": "Days 1–14",
+          "objective": "Master essential prerequisite technologies and establish practical hands-on evidence for: REST APIs, SQL, Git / Version Control.",
+          "skillsToFocus": [
+            "REST APIs",
+            "SQL",
+            "Git / Version Control"
+          ],
+          "recommendedAction": "Build a dedicated lab project or component explicitly implementing REST APIs and SQL.",
+          "expectedMilestone": "Complete and publish open-source code/repository demonstrating foundational REST APIs capabilities.",
+          "stageCourses": [
+            {
+              "courseId": "course_1_rest_apis",
+              "name": "REST APIs Essentials & Applied Architecture",
+              "title": "REST APIs Essentials & Applied Architecture",
+              "platform": "Coursera",
+              "level": "Foundational",
+              "skillAddressed": "REST APIs",
+              "targetSkill": "REST APIs",
+              "stage": "Stage 1",
+              "stageId": "stage-1",
+              "whyRecommended": "No resume evidence detected for REST APIs, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 1 of your career roadmap.",
+              "recommendationReason": "No resume evidence detected for REST APIs, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 1 of your career roadmap.",
+              "duration": "16 Hours",
+              "link": "https://www.coursera.org/search?query=REST%20APIs"
+            },
+            {
+              "courseId": "course_1_sql",
+              "name": "SQL & Database Performance Tuning for Engineers",
+              "title": "SQL & Database Performance Tuning for Engineers",
+              "platform": "Coursera",
+              "level": "Foundational",
+              "skillAddressed": "SQL",
+              "targetSkill": "SQL",
+              "stage": "Stage 1",
+              "stageId": "stage-1",
+              "whyRecommended": "No resume evidence detected for SQL, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 1 of your career roadmap.",
+              "recommendationReason": "No resume evidence detected for SQL, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 1 of your career roadmap.",
+              "duration": "15 Hours",
+              "link": "https://www.coursera.org/search?query=SQL"
+            },
+            {
+              "courseId": "course_1_git___version_control",
+              "name": "Git / Version Control Essentials & Applied Architecture",
+              "title": "Git / Version Control Essentials & Applied Architecture",
+              "platform": "Coursera",
+              "level": "Foundational",
+              "skillAddressed": "Git / Version Control",
+              "targetSkill": "Git / Version Control",
+              "stage": "Stage 1",
+              "stageId": "stage-1",
+              "whyRecommended": "No resume evidence detected for Git / Version Control, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 1 of your career roadmap.",
+              "recommendationReason": "No resume evidence detected for Git / Version Control, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 1 of your career roadmap.",
+              "duration": "16 Hours",
+              "link": "https://www.coursera.org/search?query=Git%20%2F%20Version%20Control"
+            }
+          ],
+          "recommendedCourses": [
+            {
+              "courseId": "course_1_rest_apis",
+              "name": "REST APIs Essentials & Applied Architecture",
+              "title": "REST APIs Essentials & Applied Architecture",
+              "platform": "Coursera",
+              "level": "Foundational",
+              "skillAddressed": "REST APIs",
+              "targetSkill": "REST APIs",
+              "stage": "Stage 1",
+              "stageId": "stage-1",
+              "whyRecommended": "No resume evidence detected for REST APIs, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 1 of your career roadmap.",
+              "recommendationReason": "No resume evidence detected for REST APIs, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 1 of your career roadmap.",
+              "duration": "16 Hours",
+              "link": "https://www.coursera.org/search?query=REST%20APIs"
+            },
+            {
+              "courseId": "course_1_sql",
+              "name": "SQL & Database Performance Tuning for Engineers",
+              "title": "SQL & Database Performance Tuning for Engineers",
+              "platform": "Coursera",
+              "level": "Foundational",
+              "skillAddressed": "SQL",
+              "targetSkill": "SQL",
+              "stage": "Stage 1",
+              "stageId": "stage-1",
+              "whyRecommended": "No resume evidence detected for SQL, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 1 of your career roadmap.",
+              "recommendationReason": "No resume evidence detected for SQL, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 1 of your career roadmap.",
+              "duration": "15 Hours",
+              "link": "https://www.coursera.org/search?query=SQL"
+            },
+            {
+              "courseId": "course_1_git___version_control",
+              "name": "Git / Version Control Essentials & Applied Architecture",
+              "title": "Git / Version Control Essentials & Applied Architecture",
+              "platform": "Coursera",
+              "level": "Foundational",
+              "skillAddressed": "Git / Version Control",
+              "targetSkill": "Git / Version Control",
+              "stage": "Stage 1",
+              "stageId": "stage-1",
+              "whyRecommended": "No resume evidence detected for Git / Version Control, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 1 of your career roadmap.",
+              "recommendationReason": "No resume evidence detected for Git / Version Control, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 1 of your career roadmap.",
+              "duration": "16 Hours",
+              "link": "https://www.coursera.org/search?query=Git%20%2F%20Version%20Control"
+            }
+          ]
+        },
+        {
+          "stageId": "stage-2",
+          "stageName": "Stage 2: Advanced Technical Architecture & System Integration",
+          "timeframe": "Weeks 3–4",
+          "objective": "Expand technical depth and integrate advanced pipeline/system capabilities for: JavaScript, Node.js, React.js.",
+          "skillsToFocus": [
+            "JavaScript",
+            "Node.js",
+            "React.js"
+          ],
+          "recommendedAction": "Deploy end-to-end integration workflows addressing JavaScript and Node.js.",
+          "expectedMilestone": "Achieve verified practical evidence status on secondary role requirements.",
+          "stageCourses": [
+            {
+              "courseId": "course_2_javascript",
+              "name": "Applied JavaScript Hands-On Labs & Verification",
+              "title": "Applied JavaScript Hands-On Labs & Verification",
+              "platform": "Coursera",
+              "level": "Intermediate",
+              "skillAddressed": "JavaScript",
+              "targetSkill": "JavaScript",
+              "stage": "Stage 2",
+              "stageId": "stage-2",
+              "whyRecommended": "Your resume mentions JavaScript (skills section), but lacks practical project evidence. This course provides hands-on labs to verify practical competence for Stage 2.",
+              "recommendationReason": "Your resume mentions JavaScript (skills section), but lacks practical project evidence. This course provides hands-on labs to verify practical competence for Stage 2.",
+              "duration": "12 Hours",
+              "link": "https://www.coursera.org/search?query=JavaScript"
+            },
+            {
+              "courseId": "course_2_node_js",
+              "name": "Applied Node.js Hands-On Labs & Verification",
+              "title": "Applied Node.js Hands-On Labs & Verification",
+              "platform": "Coursera",
+              "level": "Intermediate",
+              "skillAddressed": "Node.js",
+              "targetSkill": "Node.js",
+              "stage": "Stage 2",
+              "stageId": "stage-2",
+              "whyRecommended": "Your resume mentions Node.js (skills section), but lacks practical project evidence. This course provides hands-on labs to verify practical competence for Stage 2.",
+              "recommendationReason": "Your resume mentions Node.js (skills section), but lacks practical project evidence. This course provides hands-on labs to verify practical competence for Stage 2.",
+              "duration": "12 Hours",
+              "link": "https://www.coursera.org/search?query=Node.js"
+            },
+            {
+              "courseId": "course_2_react_js",
+              "name": "Modern React & Frontend UI Architecture",
+              "title": "Modern React & Frontend UI Architecture",
+              "platform": "Coursera",
+              "level": "Intermediate",
+              "skillAddressed": "React.js",
+              "targetSkill": "React.js",
+              "stage": "Stage 2",
+              "stageId": "stage-2",
+              "whyRecommended": "Your resume mentions React.js (skills section), but lacks practical project evidence. This course provides hands-on labs to verify practical competence for Stage 2.",
+              "recommendationReason": "Your resume mentions React.js (skills section), but lacks practical project evidence. This course provides hands-on labs to verify practical competence for Stage 2.",
+              "duration": "16 Hours",
+              "link": "https://www.coursera.org/search?query=React.js"
+            }
+          ],
+          "recommendedCourses": [
+            {
+              "courseId": "course_2_javascript",
+              "name": "Applied JavaScript Hands-On Labs & Verification",
+              "title": "Applied JavaScript Hands-On Labs & Verification",
+              "platform": "Coursera",
+              "level": "Intermediate",
+              "skillAddressed": "JavaScript",
+              "targetSkill": "JavaScript",
+              "stage": "Stage 2",
+              "stageId": "stage-2",
+              "whyRecommended": "Your resume mentions JavaScript (skills section), but lacks practical project evidence. This course provides hands-on labs to verify practical competence for Stage 2.",
+              "recommendationReason": "Your resume mentions JavaScript (skills section), but lacks practical project evidence. This course provides hands-on labs to verify practical competence for Stage 2.",
+              "duration": "12 Hours",
+              "link": "https://www.coursera.org/search?query=JavaScript"
+            },
+            {
+              "courseId": "course_2_node_js",
+              "name": "Applied Node.js Hands-On Labs & Verification",
+              "title": "Applied Node.js Hands-On Labs & Verification",
+              "platform": "Coursera",
+              "level": "Intermediate",
+              "skillAddressed": "Node.js",
+              "targetSkill": "Node.js",
+              "stage": "Stage 2",
+              "stageId": "stage-2",
+              "whyRecommended": "Your resume mentions Node.js (skills section), but lacks practical project evidence. This course provides hands-on labs to verify practical competence for Stage 2.",
+              "recommendationReason": "Your resume mentions Node.js (skills section), but lacks practical project evidence. This course provides hands-on labs to verify practical competence for Stage 2.",
+              "duration": "12 Hours",
+              "link": "https://www.coursera.org/search?query=Node.js"
+            },
+            {
+              "courseId": "course_2_react_js",
+              "name": "Modern React & Frontend UI Architecture",
+              "title": "Modern React & Frontend UI Architecture",
+              "platform": "Coursera",
+              "level": "Intermediate",
+              "skillAddressed": "React.js",
+              "targetSkill": "React.js",
+              "stage": "Stage 2",
+              "stageId": "stage-2",
+              "whyRecommended": "Your resume mentions React.js (skills section), but lacks practical project evidence. This course provides hands-on labs to verify practical competence for Stage 2.",
+              "recommendationReason": "Your resume mentions React.js (skills section), but lacks practical project evidence. This course provides hands-on labs to verify practical competence for Stage 2.",
+              "duration": "16 Hours",
+              "link": "https://www.coursera.org/search?query=React.js"
+            }
+          ]
+        },
+        {
+          "stageId": "stage-3",
+          "stageName": "Stage 3: Production Deployment & Evidence Verification",
+          "timeframe": "Month 2",
+          "objective": "Verify production resilience and achieve verified status on remaining requirement gaps.",
+          "skillsToFocus": [
+            "Docker",
+            "CI/CD",
+            "Python"
+          ],
+          "recommendedAction": "Execute real-world deployment or security audit lab to convert learning evidence into practical evidence.",
+          "expectedMilestone": "All core target-role requirements verified with hands-on project or experience evidence.",
+          "stageCourses": [
+            {
+              "courseId": "course_3_docker",
+              "name": "Docker & Containerization for Application Developers",
+              "title": "Docker & Containerization for Application Developers",
+              "platform": "Coursera",
+              "level": "Foundational",
+              "skillAddressed": "Docker",
+              "targetSkill": "Docker",
+              "stage": "Stage 3",
+              "stageId": "stage-3",
+              "whyRecommended": "No resume evidence detected for Docker, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 3 of your career roadmap.",
+              "recommendationReason": "No resume evidence detected for Docker, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 3 of your career roadmap.",
+              "duration": "12 Hours",
+              "link": "https://www.coursera.org/search?query=Docker"
+            },
+            {
+              "courseId": "course_3_ci_cd",
+              "name": "Continuous Integration & Deployment (CI/CD) Pipeline Automation",
+              "title": "Continuous Integration & Deployment (CI/CD) Pipeline Automation",
+              "platform": "Udemy",
+              "level": "Foundational",
+              "skillAddressed": "CI/CD",
+              "targetSkill": "CI/CD",
+              "stage": "Stage 3",
+              "stageId": "stage-3",
+              "whyRecommended": "No resume evidence detected for CI/CD, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 3 of your career roadmap.",
+              "recommendationReason": "No resume evidence detected for CI/CD, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 3 of your career roadmap.",
+              "duration": "16 Hours",
+              "link": "https://www.coursera.org/search?query=CI%2FCD"
+            },
+            {
+              "courseId": "course_3_python",
+              "name": "Python for Systems Automation & Software Engineering",
+              "title": "Python for Systems Automation & Software Engineering",
+              "platform": "Udemy",
+              "level": "Foundational",
+              "skillAddressed": "Python",
+              "targetSkill": "Python",
+              "stage": "Stage 3",
+              "stageId": "stage-3",
+              "whyRecommended": "No resume evidence detected for Python, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 3 of your career roadmap.",
+              "recommendationReason": "No resume evidence detected for Python, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 3 of your career roadmap.",
+              "duration": "20 Hours",
+              "link": "https://www.coursera.org/search?query=Python"
+            }
+          ],
+          "recommendedCourses": [
+            {
+              "courseId": "course_3_docker",
+              "name": "Docker & Containerization for Application Developers",
+              "title": "Docker & Containerization for Application Developers",
+              "platform": "Coursera",
+              "level": "Foundational",
+              "skillAddressed": "Docker",
+              "targetSkill": "Docker",
+              "stage": "Stage 3",
+              "stageId": "stage-3",
+              "whyRecommended": "No resume evidence detected for Docker, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 3 of your career roadmap.",
+              "recommendationReason": "No resume evidence detected for Docker, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 3 of your career roadmap.",
+              "duration": "12 Hours",
+              "link": "https://www.coursera.org/search?query=Docker"
+            },
+            {
+              "courseId": "course_3_ci_cd",
+              "name": "Continuous Integration & Deployment (CI/CD) Pipeline Automation",
+              "title": "Continuous Integration & Deployment (CI/CD) Pipeline Automation",
+              "platform": "Udemy",
+              "level": "Foundational",
+              "skillAddressed": "CI/CD",
+              "targetSkill": "CI/CD",
+              "stage": "Stage 3",
+              "stageId": "stage-3",
+              "whyRecommended": "No resume evidence detected for CI/CD, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 3 of your career roadmap.",
+              "recommendationReason": "No resume evidence detected for CI/CD, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 3 of your career roadmap.",
+              "duration": "16 Hours",
+              "link": "https://www.coursera.org/search?query=CI%2FCD"
+            },
+            {
+              "courseId": "course_3_python",
+              "name": "Python for Systems Automation & Software Engineering",
+              "title": "Python for Systems Automation & Software Engineering",
+              "platform": "Udemy",
+              "level": "Foundational",
+              "skillAddressed": "Python",
+              "targetSkill": "Python",
+              "stage": "Stage 3",
+              "stageId": "stage-3",
+              "whyRecommended": "No resume evidence detected for Python, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 3 of your career roadmap.",
+              "recommendationReason": "No resume evidence detected for Python, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 3 of your career roadmap.",
+              "duration": "20 Hours",
+              "link": "https://www.coursera.org/search?query=Python"
+            }
+          ]
+        },
+        {
+          "stageId": "stage-4",
+          "stageName": "Stage 4: Resume & Evidence Optimization",
+          "timeframe": "Post-Implementation",
+          "objective": "Refine resume bullet points with quantifiable achievement statements and update verified technical evidence for Senior Full Stack Engineer.",
+          "skillsToFocus": [
+            "Resume & Evidence Optimization",
+            "ATS Keyword Alignment",
+            "Quantifiable Performance Metrics"
+          ],
+          "recommendedAction": "Document project outcomes with metric-driven technical results and update skills section on resume.",
+          "expectedMilestone": "Re-run ATS resume analysis to confirm maximum keyword and evidence alignment score.",
+          "stageCourses": [
+            {
+              "courseId": "course_4_resume___evidence_optimization",
+              "name": "Technical Resume Writing & Quantifiable Achievement Optimization",
+              "title": "Technical Resume Writing & Quantifiable Achievement Optimization",
+              "platform": "Astra Academy",
+              "level": "Specialization",
+              "skillAddressed": "Resume & Evidence Optimization",
+              "targetSkill": "Resume & Evidence Optimization",
+              "stage": "Stage 4",
+              "stageId": "stage-4",
+              "whyRecommended": "No resume evidence detected for Resume & Evidence Optimization, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 4 of your career roadmap.",
+              "recommendationReason": "No resume evidence detected for Resume & Evidence Optimization, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 4 of your career roadmap.",
+              "duration": "4 Hours",
+              "link": "https://www.coursera.org/search?query=Resume%20%26%20Evidence%20Optimization"
+            },
+            {
+              "courseId": "course_4_ats_keyword_alignment",
+              "name": "Technical Resume Writing & Quantifiable Achievement Optimization",
+              "title": "Technical Resume Writing & Quantifiable Achievement Optimization",
+              "platform": "Astra Academy",
+              "level": "Specialization",
+              "skillAddressed": "ATS Keyword Alignment",
+              "targetSkill": "ATS Keyword Alignment",
+              "stage": "Stage 4",
+              "stageId": "stage-4",
+              "whyRecommended": "No resume evidence detected for ATS Keyword Alignment, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 4 of your career roadmap.",
+              "recommendationReason": "No resume evidence detected for ATS Keyword Alignment, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 4 of your career roadmap.",
+              "duration": "4 Hours",
+              "link": "https://www.coursera.org/search?query=ATS%20Keyword%20Alignment"
+            },
+            {
+              "courseId": "course_4_quantifiable_performance_metrics",
+              "name": "Technical Resume Writing & Quantifiable Achievement Optimization",
+              "title": "Technical Resume Writing & Quantifiable Achievement Optimization",
+              "platform": "Astra Academy",
+              "level": "Specialization",
+              "skillAddressed": "Quantifiable Performance Metrics",
+              "targetSkill": "Quantifiable Performance Metrics",
+              "stage": "Stage 4",
+              "stageId": "stage-4",
+              "whyRecommended": "No resume evidence detected for Quantifiable Performance Metrics, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 4 of your career roadmap.",
+              "recommendationReason": "No resume evidence detected for Quantifiable Performance Metrics, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 4 of your career roadmap.",
+              "duration": "4 Hours",
+              "link": "https://www.coursera.org/search?query=Quantifiable%20Performance%20Metrics"
+            }
+          ],
+          "recommendedCourses": [
+            {
+              "courseId": "course_4_resume___evidence_optimization",
+              "name": "Technical Resume Writing & Quantifiable Achievement Optimization",
+              "title": "Technical Resume Writing & Quantifiable Achievement Optimization",
+              "platform": "Astra Academy",
+              "level": "Specialization",
+              "skillAddressed": "Resume & Evidence Optimization",
+              "targetSkill": "Resume & Evidence Optimization",
+              "stage": "Stage 4",
+              "stageId": "stage-4",
+              "whyRecommended": "No resume evidence detected for Resume & Evidence Optimization, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 4 of your career roadmap.",
+              "recommendationReason": "No resume evidence detected for Resume & Evidence Optimization, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 4 of your career roadmap.",
+              "duration": "4 Hours",
+              "link": "https://www.coursera.org/search?query=Resume%20%26%20Evidence%20Optimization"
+            },
+            {
+              "courseId": "course_4_ats_keyword_alignment",
+              "name": "Technical Resume Writing & Quantifiable Achievement Optimization",
+              "title": "Technical Resume Writing & Quantifiable Achievement Optimization",
+              "platform": "Astra Academy",
+              "level": "Specialization",
+              "skillAddressed": "ATS Keyword Alignment",
+              "targetSkill": "ATS Keyword Alignment",
+              "stage": "Stage 4",
+              "stageId": "stage-4",
+              "whyRecommended": "No resume evidence detected for ATS Keyword Alignment, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 4 of your career roadmap.",
+              "recommendationReason": "No resume evidence detected for ATS Keyword Alignment, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 4 of your career roadmap.",
+              "duration": "4 Hours",
+              "link": "https://www.coursera.org/search?query=ATS%20Keyword%20Alignment"
+            },
+            {
+              "courseId": "course_4_quantifiable_performance_metrics",
+              "name": "Technical Resume Writing & Quantifiable Achievement Optimization",
+              "title": "Technical Resume Writing & Quantifiable Achievement Optimization",
+              "platform": "Astra Academy",
+              "level": "Specialization",
+              "skillAddressed": "Quantifiable Performance Metrics",
+              "targetSkill": "Quantifiable Performance Metrics",
+              "stage": "Stage 4",
+              "stageId": "stage-4",
+              "whyRecommended": "No resume evidence detected for Quantifiable Performance Metrics, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 4 of your career roadmap.",
+              "recommendationReason": "No resume evidence detected for Quantifiable Performance Metrics, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 4 of your career roadmap.",
+              "duration": "4 Hours",
+              "link": "https://www.coursera.org/search?query=Quantifiable%20Performance%20Metrics"
+            }
+          ]
+        }
+      ],
+      "courseRecommendations": [
+        {
+          "courseId": "course_1_rest_apis",
+          "name": "REST APIs Essentials & Applied Architecture",
+          "title": "REST APIs Essentials & Applied Architecture",
+          "platform": "Coursera",
+          "level": "Foundational",
+          "skillAddressed": "REST APIs",
+          "targetSkill": "REST APIs",
+          "stage": "Stage 1",
+          "stageId": "stage-1",
+          "whyRecommended": "No resume evidence detected for REST APIs, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 1 of your career roadmap.",
+          "recommendationReason": "No resume evidence detected for REST APIs, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 1 of your career roadmap.",
+          "duration": "16 Hours",
+          "link": "https://www.coursera.org/search?query=REST%20APIs"
+        },
+        {
+          "courseId": "course_1_sql",
+          "name": "SQL & Database Performance Tuning for Engineers",
+          "title": "SQL & Database Performance Tuning for Engineers",
+          "platform": "Coursera",
+          "level": "Foundational",
+          "skillAddressed": "SQL",
+          "targetSkill": "SQL",
+          "stage": "Stage 1",
+          "stageId": "stage-1",
+          "whyRecommended": "No resume evidence detected for SQL, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 1 of your career roadmap.",
+          "recommendationReason": "No resume evidence detected for SQL, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 1 of your career roadmap.",
+          "duration": "15 Hours",
+          "link": "https://www.coursera.org/search?query=SQL"
+        },
+        {
+          "courseId": "course_1_git___version_control",
+          "name": "Git / Version Control Essentials & Applied Architecture",
+          "title": "Git / Version Control Essentials & Applied Architecture",
+          "platform": "Coursera",
+          "level": "Foundational",
+          "skillAddressed": "Git / Version Control",
+          "targetSkill": "Git / Version Control",
+          "stage": "Stage 1",
+          "stageId": "stage-1",
+          "whyRecommended": "No resume evidence detected for Git / Version Control, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 1 of your career roadmap.",
+          "recommendationReason": "No resume evidence detected for Git / Version Control, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 1 of your career roadmap.",
+          "duration": "16 Hours",
+          "link": "https://www.coursera.org/search?query=Git%20%2F%20Version%20Control"
+        },
+        {
+          "courseId": "course_2_javascript",
+          "name": "Applied JavaScript Hands-On Labs & Verification",
+          "title": "Applied JavaScript Hands-On Labs & Verification",
+          "platform": "Coursera",
+          "level": "Intermediate",
+          "skillAddressed": "JavaScript",
+          "targetSkill": "JavaScript",
+          "stage": "Stage 2",
+          "stageId": "stage-2",
+          "whyRecommended": "Your resume mentions JavaScript (skills section), but lacks practical project evidence. This course provides hands-on labs to verify practical competence for Stage 2.",
+          "recommendationReason": "Your resume mentions JavaScript (skills section), but lacks practical project evidence. This course provides hands-on labs to verify practical competence for Stage 2.",
+          "duration": "12 Hours",
+          "link": "https://www.coursera.org/search?query=JavaScript"
+        },
+        {
+          "courseId": "course_2_node_js",
+          "name": "Applied Node.js Hands-On Labs & Verification",
+          "title": "Applied Node.js Hands-On Labs & Verification",
+          "platform": "Coursera",
+          "level": "Intermediate",
+          "skillAddressed": "Node.js",
+          "targetSkill": "Node.js",
+          "stage": "Stage 2",
+          "stageId": "stage-2",
+          "whyRecommended": "Your resume mentions Node.js (skills section), but lacks practical project evidence. This course provides hands-on labs to verify practical competence for Stage 2.",
+          "recommendationReason": "Your resume mentions Node.js (skills section), but lacks practical project evidence. This course provides hands-on labs to verify practical competence for Stage 2.",
+          "duration": "12 Hours",
+          "link": "https://www.coursera.org/search?query=Node.js"
+        },
+        {
+          "courseId": "course_2_react_js",
+          "name": "Modern React & Frontend UI Architecture",
+          "title": "Modern React & Frontend UI Architecture",
+          "platform": "Coursera",
+          "level": "Intermediate",
+          "skillAddressed": "React.js",
+          "targetSkill": "React.js",
+          "stage": "Stage 2",
+          "stageId": "stage-2",
+          "whyRecommended": "Your resume mentions React.js (skills section), but lacks practical project evidence. This course provides hands-on labs to verify practical competence for Stage 2.",
+          "recommendationReason": "Your resume mentions React.js (skills section), but lacks practical project evidence. This course provides hands-on labs to verify practical competence for Stage 2.",
+          "duration": "16 Hours",
+          "link": "https://www.coursera.org/search?query=React.js"
+        },
+        {
+          "courseId": "course_3_docker",
+          "name": "Docker & Containerization for Application Developers",
+          "title": "Docker & Containerization for Application Developers",
+          "platform": "Coursera",
+          "level": "Foundational",
+          "skillAddressed": "Docker",
+          "targetSkill": "Docker",
+          "stage": "Stage 3",
+          "stageId": "stage-3",
+          "whyRecommended": "No resume evidence detected for Docker, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 3 of your career roadmap.",
+          "recommendationReason": "No resume evidence detected for Docker, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 3 of your career roadmap.",
+          "duration": "12 Hours",
+          "link": "https://www.coursera.org/search?query=Docker"
+        },
+        {
+          "courseId": "course_3_ci_cd",
+          "name": "Continuous Integration & Deployment (CI/CD) Pipeline Automation",
+          "title": "Continuous Integration & Deployment (CI/CD) Pipeline Automation",
+          "platform": "Udemy",
+          "level": "Foundational",
+          "skillAddressed": "CI/CD",
+          "targetSkill": "CI/CD",
+          "stage": "Stage 3",
+          "stageId": "stage-3",
+          "whyRecommended": "No resume evidence detected for CI/CD, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 3 of your career roadmap.",
+          "recommendationReason": "No resume evidence detected for CI/CD, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 3 of your career roadmap.",
+          "duration": "16 Hours",
+          "link": "https://www.coursera.org/search?query=CI%2FCD"
+        },
+        {
+          "courseId": "course_3_python",
+          "name": "Python for Systems Automation & Software Engineering",
+          "title": "Python for Systems Automation & Software Engineering",
+          "platform": "Udemy",
+          "level": "Foundational",
+          "skillAddressed": "Python",
+          "targetSkill": "Python",
+          "stage": "Stage 3",
+          "stageId": "stage-3",
+          "whyRecommended": "No resume evidence detected for Python, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 3 of your career roadmap.",
+          "recommendationReason": "No resume evidence detected for Python, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 3 of your career roadmap.",
+          "duration": "20 Hours",
+          "link": "https://www.coursera.org/search?query=Python"
+        },
+        {
+          "courseId": "course_4_resume___evidence_optimization",
+          "name": "Technical Resume Writing & Quantifiable Achievement Optimization",
+          "title": "Technical Resume Writing & Quantifiable Achievement Optimization",
+          "platform": "Astra Academy",
+          "level": "Specialization",
+          "skillAddressed": "Resume & Evidence Optimization",
+          "targetSkill": "Resume & Evidence Optimization",
+          "stage": "Stage 4",
+          "stageId": "stage-4",
+          "whyRecommended": "No resume evidence detected for Resume & Evidence Optimization, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 4 of your career roadmap.",
+          "recommendationReason": "No resume evidence detected for Resume & Evidence Optimization, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 4 of your career roadmap.",
+          "duration": "4 Hours",
+          "link": "https://www.coursera.org/search?query=Resume%20%26%20Evidence%20Optimization"
+        },
+        {
+          "courseId": "course_4_ats_keyword_alignment",
+          "name": "Technical Resume Writing & Quantifiable Achievement Optimization",
+          "title": "Technical Resume Writing & Quantifiable Achievement Optimization",
+          "platform": "Astra Academy",
+          "level": "Specialization",
+          "skillAddressed": "ATS Keyword Alignment",
+          "targetSkill": "ATS Keyword Alignment",
+          "stage": "Stage 4",
+          "stageId": "stage-4",
+          "whyRecommended": "No resume evidence detected for ATS Keyword Alignment, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 4 of your career roadmap.",
+          "recommendationReason": "No resume evidence detected for ATS Keyword Alignment, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 4 of your career roadmap.",
+          "duration": "4 Hours",
+          "link": "https://www.coursera.org/search?query=ATS%20Keyword%20Alignment"
+        },
+        {
+          "courseId": "course_4_quantifiable_performance_metrics",
+          "name": "Technical Resume Writing & Quantifiable Achievement Optimization",
+          "title": "Technical Resume Writing & Quantifiable Achievement Optimization",
+          "platform": "Astra Academy",
+          "level": "Specialization",
+          "skillAddressed": "Quantifiable Performance Metrics",
+          "targetSkill": "Quantifiable Performance Metrics",
+          "stage": "Stage 4",
+          "stageId": "stage-4",
+          "whyRecommended": "No resume evidence detected for Quantifiable Performance Metrics, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 4 of your career roadmap.",
+          "recommendationReason": "No resume evidence detected for Quantifiable Performance Metrics, a key requirement for Senior Full Stack Engineer. This course bridges the gap in Stage 4 of your career roadmap.",
+          "duration": "4 Hours",
+          "link": "https://www.coursera.org/search?query=Quantifiable%20Performance%20Metrics"
+        }
+      ]
+    }
+  ],
+  "chats": []
+}

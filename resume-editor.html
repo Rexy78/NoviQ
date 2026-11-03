@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume Improvement Studio - Career Nova</title>
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/animations.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <style>
+    .studio-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 1024px) {
+      .studio-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .ats-resume-paper {
+      background: #FFFFFF;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 2.5rem 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      font-family: 'Calibri', 'Arial', sans-serif;
+      color: #111827;
+      line-height: 1.5;
+    }
+    .ats-resume-header {
+      text-align: center;
+      border-bottom: 2px solid #111827;
+      padding-bottom: 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .ats-resume-name {
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin: 0;
+    }
+    .ats-resume-contact {
+      font-size: 0.875rem;
+      color: #374151;
+      margin-top: 0.35rem;
+    }
+    .ats-section-heading {
+      font-size: 1.05rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid #374151;
+      padding-bottom: 0.2rem;
+      margin-top: 1.25rem;
+      margin-bottom: 0.6rem;
+    }
+    .ats-bullet-list {
+      margin: 0;
+      padding-left: 1.25rem;
+      font-size: 0.9rem;
+    }
+    .ats-bullet-list li {
+      margin-bottom: 0.35rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-layout">
+    <div id="sidebar-container"></div>
+
+    <main class="main-content">
+      <div class="dash-header">
+        <div>
+          <h1 class="page-title">Resume Improvement Studio</h1>
+          <p class="page-subtitle">Refine structured resume sections using AI gap suggestions and live ATS layout preview</p>
+        </div>
+        <div style="display:flex; gap:0.5rem; align-items:center;">
+          <span class="target-role-pill" id="studio-role-pill">
+            Target Role: Loading...
+          </span>
+        </div>
+      </div>
+
+      <!-- Action Bar -->
+      <div style="display:flex; justify-content:space-between; align-items:center; background:#FFFFFF; border:1px solid var(--border-color); border-radius:var(--radius-md); padding:0.85rem 1.25rem; margin-bottom:1.5rem; flex-wrap:wrap; gap:0.75rem;">
+        <div style="font-size:0.875rem; color:var(--text-muted);">
+          <span>Drafting ATS-Optimized Resume Document</span>
+        </div>
+
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+          <button class="btn btn-outline btn-sm" onclick="exportResumeText()" style="display:inline-flex; align-items:center; gap:0.35rem;">
+            <span>📄 Export Plain Text</span>
+          </button>
+          <button class="btn btn-outline btn-sm" onclick="window.print()" style="display:inline-flex; align-items:center; gap:0.35rem;">
+            <span>🖨️ Print / Save PDF</span>
+          </button>
+          <a href="/upload.html" class="btn btn-primary btn-sm" style="display:inline-flex; align-items:center; gap:0.35rem;">
+            <span>⚡ Re-Analyze Resume</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Studio Grid: Editor vs Live Preview -->
+      <div class="studio-grid animate-fade-in">
+        <!-- Left Column: Structured Section Editor & AI Gap Suggestions -->
+        <div style="display:flex; flex-direction:column; gap:1.25rem;">
+          <!-- AI Improvement Suggestions Panel -->
+          <div class="card" style="background:linear-gradient(135deg, #FFFFFF, var(--bg-purple-light)); border-color:var(--border-purple);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+              <h3 style="font-size:1.05rem; color:var(--primary-purple-dark); margin:0; display:flex; align-items:center; gap:0.4rem;">
+                <span>✨ AI Gap Suggestions</span>
+              </h3>
+              <button class="btn btn-outline btn-sm" onclick="Nova.ask('How can I optimize my resume summary and experience for my target role?')" style="font-size:0.725rem; padding:0.25rem 0.5rem;">
+                <span>Ask Nova</span>
+              </button>
+            </div>
+            <div id="ai-studio-suggestions" style="font-size:0.85rem; color:var(--text-main);">
+              <div class="skeleton-box" style="height:60px; width:100%;"></div>
+            </div>
+          </div>
+
+          <!-- Section Editor Forms -->
+          <div class="card" style="background:#FFFFFF;">
+            <div style="display:flex; gap:0.5rem; margin-bottom:1.25rem; border-bottom:1px solid var(--border-color); padding-bottom:0.75rem; flex-wrap:wrap;" id="section-tabs-bar">
+              <button class="btn btn-primary btn-sm" onclick="switchSectionTab('summary')" id="stab-summary">Summary</button>
+              <button class="btn btn-outline btn-sm" onclick="switchSectionTab('skills')" id="stab-skills">Skills</button>
+              <button class="btn btn-outline btn-sm" onclick="switchSectionTab('experience')" id="stab-experience">Experience</button>
+              <button class="btn btn-outline btn-sm" onclick="switchSectionTab('projects')" id="stab-projects">Projects</button>
+              <button class="btn btn-outline btn-sm" onclick="switchSectionTab('education')" id="stab-education">Education</button>
+            </div>
+
+            <!-- Tab Content: Professional Summary -->
+            <div id="sec-view-summary">
+              <div class="form-group">
+                <label class="form-label" for="edit-candidate-name">Candidate Full Name</label>
+                <input type="text" id="edit-candidate-name" class="form-control" oninput="updateLivePreview()" placeholder="e.g. Alex Morgan">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="edit-candidate-contact">Contact Details (Location, Email, Phone, LinkedIn)</label>
+                <input type="text" id="edit-candidate-contact" class="form-control" oninput="updateLivePreview()" placeholder="San Francisco, CA | alex@example.com | (555) 019-2831 | linkedin.com/in/alex">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="edit-summary-text">Professional Executive Summary</label>
+                <textarea id="edit-summary-text" class="form-control" rows="4" oninput="updateLivePreview()" placeholder="Results-driven Software Engineer with hands-on experience in full-stack web architectures..."></textarea>
+              </div>
+            </div>
+
+            <!-- Tab Content: Core Skills -->
+            <div id="sec-view-skills" style="display:none;">
+              <div class="form-group">
+                <label class="form-label" for="edit-skills-text">Technical Skills (Comma Separated)</label>
+                <textarea id="edit-skills-text" class="form-control" rows="5" oninput="updateLivePreview()" placeholder="JavaScript, TypeScript, React, Node.js, Express, PostgreSQL, REST APIs, Docker, Git, CI/CD"></textarea>
+              </div>
+            </div>
+
+            <!-- Tab Content: Experience -->
+            <div id="sec-view-experience" style="display:none;">
+              <div class="form-group">
+                <label class="form-label" for="edit-experience-text">Experience Statements (One Bullet Point per Line)</label>
+                <textarea id="edit-experience-text" class="form-control" rows="8" oninput="updateLivePreview()" placeholder="• Architected RESTful microservices reducing API request latency by 35%.&#10;• Led frontend state management refactoring in React & TypeScript across 4 core modules.&#10;• Integrated PostgreSQL database schemas and optimized index queries for high throughput."></textarea>
+              </div>
+            </div>
+
+            <!-- Tab Content: Projects -->
+            <div id="sec-view-projects" style="display:none;">
+              <div class="form-group">
+                <label class="form-label" for="edit-projects-text">Project Descriptions (One Bullet Point per Line)</label>
+                <textarea id="edit-projects-text" class="form-control" rows="8" oninput="updateLivePreview()" placeholder="• E-Commerce Web Platform (React, Node.js, Stripe): Implemented secure checkout gateway and user authentication.&#10;• Real-Time Analytics Dashboard (TypeScript, WebSockets, Chart.js): Built live event stream visualization."></textarea>
+              </div>
+            </div>
+
+            <!-- Tab Content: Education -->
+            <div id="sec-view-education" style="display:none;">
+              <div class="form-group">
+                <label class="form-label" for="edit-education-text">Education & Certifications</label>
+                <textarea id="edit-education-text" class="form-control" rows="4" oninput="updateLivePreview()" placeholder="B.S. in Computer Science | State University (Graduated May 2024)&#10;Certifications: AWS Certified Developer Associate"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Live Formatted ATS Resume Preview -->
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+            <strong style="font-size:0.95rem; color:var(--text-dark);">Live ATS Resume Preview</strong>
+            <span class="badge badge-pass" style="font-size:0.725rem;">1-Column Standard Flow</span>
+          </div>
+
+          <div class="ats-resume-paper" id="resume-paper-preview">
+            <div class="ats-resume-header">
+              <div class="ats-resume-name" id="prev-name">ALEX MORGAN</div>
+              <div class="ats-resume-contact" id="prev-contact">San Francisco, CA | alex@example.com | linkedin.com/in/alex</div>
+            </div>
+
+            <div>
+              <div class="ats-section-heading">PROFESSIONAL SUMMARY</div>
+              <div id="prev-summary" style="font-size:0.9rem; margin-bottom:0.75rem; text-align:justify;">
+                Results-driven Software Engineer with hands-on experience in building scalable web applications, REST APIs, and modern frontend interfaces.
+              </div>
+
+              <div class="ats-section-heading">TECHNICAL SKILLS</div>
+              <div id="prev-skills" style="font-size:0.9rem; margin-bottom:0.75rem;">
+                JavaScript, TypeScript, React, Node.js, Express, PostgreSQL, REST APIs, Git, Docker, CI/CD
+              </div>
+
+              <div class="ats-section-heading">PROFESSIONAL EXPERIENCE</div>
+              <ul class="ats-bullet-list" id="prev-experience">
+                <li>Developed microservices reducing server response times by 30%.</li>
+                <li>Built responsive user interfaces in React and state managers.</li>
+              </ul>
+
+              <div class="ats-section-heading">KEY PROJECTS</div>
+              <ul class="ats-bullet-list" id="prev-projects">
+                <li>Portfolio Analytics Platform: Real-time dashboards and visualization tools.</li>
+              </ul>
+
+              <div class="ats-section-heading">EDUCATION</div>
+              <div id="prev-education" style="font-size:0.9rem;">
+                B.S. in Computer Science (2024)
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/icons.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/nav.js"></script>
+  <script src="/js/chatbot.js"></script>
+  <script src="/js/resume-editor.js"></script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+/* Modern Professional SaaS Keyframe Animations */
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUpFade {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.3); }
+  70% { box-shadow: 0 0 0 10px rgba(124, 58, 237, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animate-fade-in {
+    animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-stagger-1 { animation-delay: 0.05s; }
+  .animate-stagger-2 { animation-delay: 0.1s; }
+  .animate-stagger-3 { animation-delay: 0.15s; }
+  .animate-stagger-4 { animation-delay: 0.2s; }
+
+  /* Metric Card & Button Smooth Transitions */
+  .card, .ats-perf-card, .metric-card, .btn, .nav-item a {
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.2s ease,
+                background-color 0.2s ease;
+  }
+
+  .card:hover, .ats-perf-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Progress Fill Bar Transitions */
+  .progress-bar-fill, .progress-fill, .gauge-fill {
+    transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                stroke-dashoffset 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+.animate-pulse {
+  animation: pulseGlow 2s infinite;
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #FFFFFF;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  display: inline-block;
+}
+
+.spinner-purple {
+  border-color: var(--bg-purple-subtle);
+  border-top-color: var(--primary-purple);
+}
+
+.skeleton-box {
+  background: linear-gradient(90deg, #F1F5F9 25%, #E2E8F0 37%, #F1F5F9 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+  border-radius: var(--radius-sm);
+}
+
+/* Lucide Icon Utility Class */
+.lucide-icon {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+}

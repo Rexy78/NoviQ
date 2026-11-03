@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analyze Resume - Career Nova</title>
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/animations.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <style>
+    .upload-dropzone {
+      border: 2px dashed var(--border-purple);
+      background: var(--bg-purple-light);
+      border-radius: var(--radius-xl);
+      padding: 3rem 2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      margin-bottom: 2rem;
+    }
+    .upload-dropzone:hover, .upload-dropzone.dragover {
+      background: var(--bg-purple-subtle);
+      border-color: var(--primary-purple);
+      transform: scale(1.01);
+    }
+    .dropzone-icon {
+      font-size: 2.75rem;
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: center;
+    }
+    .processing-step {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-md);
+      background: var(--bg-main);
+      font-weight: 600;
+      font-size: 0.925rem;
+    }
+    .processing-step.done {
+      color: var(--status-pass);
+    }
+    .processing-step.active {
+      color: var(--primary-purple-dark);
+      background: var(--bg-purple-light);
+    }
+    .processing-step.pending {
+      color: var(--text-light);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-layout">
+    <div id="sidebar-container"></div>
+
+    <main class="main-content">
+      <div class="dash-header">
+        <div>
+          <h1 class="page-title">Resume Intelligence Upload</h1>
+          <p class="page-subtitle">Upload your resume and specify your target role for instant AI analysis</p>
+        </div>
+      </div>
+
+      <div class="card animate-fade-in" style="max-width:800px; margin:0 auto;">
+        <!-- Dropzone / File Picker -->
+        <div class="upload-dropzone" id="dropzone">
+          <div class="dropzone-icon" id="drop-icon"></div>
+          <h3 style="margin-bottom:0.5rem; color:var(--text-dark);">Drag & Drop Your Resume Here</h3>
+          <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.25rem;">Supports PDF or DOCX documents (Up to 10MB)</p>
+          <button type="button" class="btn btn-secondary" onclick="document.getElementById('file-input').click()">Browse Files</button>
+          <input type="file" id="file-input" accept=".pdf,.docx,.doc,.txt" style="display:none;" />
+        </div>
+
+        <!-- Selected File Preview Bar -->
+        <div id="file-preview-box" style="display:none; background:var(--bg-main); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1rem 1.25rem; margin-bottom:2rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div style="display:flex; align-items:center; gap:0.75rem;">
+              <span id="preview-file-icon"></span>
+              <div>
+                <div id="preview-filename" style="font-weight:700; color:var(--text-dark);">resume.pdf</div>
+                <div id="preview-filesize" style="font-size:0.8rem; color:var(--text-muted);">240 KB</div>
+              </div>
+            </div>
+            <button type="button" id="remove-file-btn" class="btn btn-outline btn-sm">Remove File</button>
+          </div>
+        </div>
+
+        <!-- Or Paste Text Option -->
+        <div style="margin-bottom:2rem;">
+          <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1rem;">
+            <hr style="flex:1; border:none; border-top:1px solid var(--border-color);" />
+            <span style="font-size:0.85rem; color:var(--text-muted); font-weight:600;">OR PASTE RESUME TEXT</span>
+            <hr style="flex:1; border:none; border-top:1px solid var(--border-color);" />
+          </div>
+
+          <textarea id="paste-text-input" class="form-control" rows="5" placeholder="Paste full resume text snippet here if you don't have a PDF file handy..."></textarea>
+        </div>
+
+        <!-- Target Role Selection -->
+        <div class="form-group" style="margin-bottom:2rem;">
+          <label class="form-label" for="target-role-select" style="font-size:1rem; color:var(--primary-purple-dark);">
+            What role are you targeting with this resume analysis? *
+          </label>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.75rem;">
+            This controls ATS keyword matching, skill gap detection, project evaluation, roadmap generation, and course suggestions.
+          </p>
+
+          <select id="target-role-select" class="form-control" style="font-size:1rem; padding:0.85rem 1rem;">
+            <option value="Software Engineer">Software Engineer</option>
+            <option value="AI Engineer">AI Engineer</option>
+            <option value="Machine Learning Engineer">Machine Learning Engineer</option>
+            <option value="Data Scientist">Data Scientist</option>
+            <option value="Data Analyst">Data Analyst</option>
+            <option value="Full Stack Developer">Full Stack Developer</option>
+            <option value="Backend Developer">Backend Developer</option>
+            <option value="Frontend Developer">Frontend Developer</option>
+            <option value="DevOps Engineer">DevOps Engineer</option>
+            <option value="Cloud Engineer">Cloud Engineer</option>
+            <option value="Cybersecurity Engineer">Cybersecurity Engineer</option>
+            <option value="CUSTOM">Custom Role (Type below...)</option>
+          </select>
+
+          <input type="text" id="custom-role-input" class="form-control" placeholder="Enter custom target job title (e.g., iOS Mobile Architect)" style="display:none; margin-top:0.75rem;" />
+        </div>
+
+        <!-- Action Button -->
+        <button type="button" id="start-analysis-btn" class="btn btn-primary btn-lg" style="width:100%; display:inline-flex; align-items:center; justify-content:center; gap:0.5rem;">
+          <span id="start-btn-icon"></span> <span>Start AI Resume Analysis</span>
+        </button>
+      </div>
+    </main>
+  </div>
+
+  <!-- Animated Analysis Processing Modal -->
+  <div class="modal-overlay" id="processing-modal">
+    <div class="modal-box" style="max-width:500px; text-align:center;">
+      <div class="spinner spinner-purple" style="width:48px; height:48px; border-width:4px; margin:0 auto 1.5rem auto;"></div>
+      <h3 style="font-size:1.5rem; margin-bottom:0.5rem; color:var(--text-dark);">Analyzing Your Resume</h3>
+      <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:2rem;">Our AI Career Intelligence engine is parsing and evaluating your profile against industry benchmarks.</p>
+
+      <div style="display:flex; flex-direction:column; gap:0.6rem; text-align:left;">
+        <div class="processing-step pending" id="step-1">Extracting resume information</div>
+        <div class="processing-step pending" id="step-2">Identifying core skills & technologies</div>
+        <div class="processing-step pending" id="step-3">Evaluating ATS compatibility</div>
+        <div class="processing-step pending" id="step-4">Comparing skills with target role</div>
+        <div class="processing-step pending" id="step-5">Analyzing projects & experience</div>
+        <div class="processing-step pending" id="step-6">Generating career roadmap & courses</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/icons.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/nav.js"></script>
+  <script src="/js/chatbot.js"></script>
+  <script src="/js/upload.js"></script>
+</body>
+</html>

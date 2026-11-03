@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech Stack Simulator - Career Nova</title>
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/projects.css">
+  <link rel="stylesheet" href="/css/animations.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <div id="sidebar-container"></div>
+
+    <main class="main-content">
+      <div class="dash-header">
+        <div>
+          <h1 class="page-title">Tech Stack Enhancement Simulator</h1>
+          <p class="page-subtitle">Simulate architectural upgrades to your projects and project ATS score impact in real time</p>
+        </div>
+        <div>
+          <span class="target-role-pill" id="sim-role-pill">
+            Target Role: Loading...
+          </span>
+        </div>
+      </div>
+
+      <!-- Prominent Simulation Disclaimer Box -->
+      <div class="card animate-fade-in" style="background:#FFFBEB; border:1px solid #FCD34D; border-radius:var(--radius-md); padding:1.1rem; margin-bottom:1.5rem; display:flex; align-items:flex-start; gap:0.85rem;">
+        <span style="font-size:1.5rem; color:#D97706; line-height:1;">⚠️</span>
+        <div style="font-size:0.875rem; color:#92400E; line-height:1.5;">
+          <strong>Simulation Sandbox Notice:</strong>
+          These architectural improvements are for scenario planning only. Simulated score increases are not added to your actual ATS score or verified skill profile until you implement the code, deploy the project, and update your resume with verified text evidence.
+        </div>
+      </div>
+
+      <div class="grid-2col animate-fade-in animate-stagger-1" style="gap:1.5rem; margin-bottom:2rem;">
+        <!-- Left: Simulation Controls -->
+        <div class="card" style="background:#FFFFFF;">
+          <h3 style="margin-bottom:1rem; font-size:1.15rem; color:var(--text-dark); display:flex; align-items:center; gap:0.4rem;">
+            <span>1. Select Resume Project to Enhance</span>
+          </h3>
+          
+          <div class="form-group" style="margin-bottom:1.25rem;">
+            <label class="form-label" for="sim-proj-select">Target Resume Project</label>
+            <select class="form-control" id="sim-proj-select" onchange="onSimulatorProjectChange()">
+              <option value="">-- Loading projects... --</option>
+            </select>
+          </div>
+
+          <div style="background:var(--bg-main); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:0.95rem; margin-bottom:1.5rem;">
+            <span style="font-size:0.775rem; color:var(--text-muted); font-weight:700; display:block; margin-bottom:0.35rem;">Current Detected Stack:</span>
+            <div id="sim-current-stack-pills" style="display:flex; gap:0.4rem; flex-wrap:wrap;">
+              <span class="badge badge-gray">Select a project</span>
+            </div>
+          </div>
+
+          <h3 style="margin-bottom:0.85rem; font-size:1.1rem; color:var(--text-dark); display:flex; align-items:center; gap:0.4rem;">
+            <span>2. Select Tech Stack Enhancements</span>
+          </h3>
+          <p style="font-size:0.825rem; color:var(--text-muted); margin-bottom:1rem;">
+            Toggle technologies you plan to add or integrate into this project:
+          </p>
+
+          <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap:0.65rem;" id="sim-enhancements-grid">
+            <label style="display:flex; align-items:center; gap:0.5rem; background:var(--bg-main); padding:0.65rem 0.85rem; border-radius:var(--radius-sm); border:1px solid var(--border-color); font-size:0.85rem; cursor:pointer;">
+              <input type="checkbox" value="REST API & Express" onchange="recalculateSimulation()" class="sim-checkbox">
+              <span>REST API & Express</span>
+            </label>
+            <label style="display:flex; align-items:center; gap:0.5rem; background:var(--bg-main); padding:0.65rem 0.85rem; border-radius:var(--radius-sm); border:1px solid var(--border-color); font-size:0.85rem; cursor:pointer;">
+              <input type="checkbox" value="PostgreSQL & SQL Database" onchange="recalculateSimulation()" class="sim-checkbox">
+              <span>PostgreSQL Database</span>
+            </label>
+            <label style="display:flex; align-items:center; gap:0.5rem; background:var(--bg-main); padding:0.65rem 0.85rem; border-radius:var(--radius-sm); border:1px solid var(--border-color); font-size:0.85rem; cursor:pointer;">
+              <input type="checkbox" value="Docker & Containerization" onchange="recalculateSimulation()" class="sim-checkbox">
+              <span>Docker Containerization</span>
+            </label>
+            <label style="display:flex; align-items:center; gap:0.5rem; background:var(--bg-main); padding:0.65rem 0.85rem; border-radius:var(--radius-sm); border:1px solid var(--border-color); font-size:0.85rem; cursor:pointer;">
+              <input type="checkbox" value="CI/CD GitHub Actions Pipeline" onchange="recalculateSimulation()" class="sim-checkbox">
+              <span>CI/CD Automation</span>
+            </label>
+            <label style="display:flex; align-items:center; gap:0.5rem; background:var(--bg-main); padding:0.65rem 0.85rem; border-radius:var(--radius-sm); border:1px solid var(--border-color); font-size:0.85rem; cursor:pointer;">
+              <input type="checkbox" value="Jest & Automated Testing" onchange="recalculateSimulation()" class="sim-checkbox">
+              <span>Automated Unit Testing</span>
+            </label>
+            <label style="display:flex; align-items:center; gap:0.5rem; background:var(--bg-main); padding:0.65rem 0.85rem; border-radius:var(--radius-sm); border:1px solid var(--border-color); font-size:0.85rem; cursor:pointer;">
+              <input type="checkbox" value="Redis Caching Layer" onchange="recalculateSimulation()" class="sim-checkbox">
+              <span>Redis In-Memory Cache</span>
+            </label>
+            <label style="display:flex; align-items:center; gap:0.5rem; background:var(--bg-main); padding:0.65rem 0.85rem; border-radius:var(--radius-sm); border:1px solid var(--border-color); font-size:0.85rem; cursor:pointer;">
+              <input type="checkbox" value="GraphQL API Gateway" onchange="recalculateSimulation()" class="sim-checkbox">
+              <span>GraphQL API Gateway</span>
+            </label>
+            <label style="display:flex; align-items:center; gap:0.5rem; background:var(--bg-main); padding:0.65rem 0.85rem; border-radius:var(--radius-sm); border:1px solid var(--border-color); font-size:0.85rem; cursor:pointer;">
+              <input type="checkbox" value="Microservices Architecture" onchange="recalculateSimulation()" class="sim-checkbox">
+              <span>Microservices Pattern</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Right: Simulated Impact -->
+        <div class="card" style="background:linear-gradient(135deg, #FFFFFF, var(--bg-purple-light)); border-color:var(--border-purple); display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:0.5rem;">
+              <h3 style="margin:0; font-size:1.15rem; color:var(--primary-purple-dark);">Simulated Score Impact</h3>
+              <span class="badge badge-purple" id="sim-selected-cnt">0 Enhancements</span>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.85rem; margin-bottom:1.25rem;">
+              <div style="background:#FFFFFF; border:1px solid var(--border-color); padding:1rem; border-radius:var(--radius-md); text-align:center;">
+                <div style="font-size:0.775rem; color:var(--text-muted); font-weight:600;">Project Technical Depth</div>
+                <div style="font-size:1.75rem; font-weight:800; color:var(--primary-purple-dark);" id="sim-depth-val">-- / 100</div>
+                <div style="font-size:0.775rem; font-weight:700; color:var(--status-pass); margin-top:0.2rem;" id="sim-depth-diff">+0 pts potential</div>
+              </div>
+
+              <div style="background:#FFFFFF; border:1px solid var(--border-color); padding:1rem; border-radius:var(--radius-md); text-align:center;">
+                <div style="font-size:0.775rem; color:var(--text-muted); font-weight:600;">Portfolio Role Alignment</div>
+                <div style="font-size:1.75rem; font-weight:800; color:var(--text-dark);" id="sim-relevance-val">-- / 100</div>
+                <div style="font-size:0.775rem; font-weight:700; color:var(--status-pass); margin-top:0.2rem;" id="sim-relevance-diff">+0 pts potential</div>
+              </div>
+            </div>
+
+            <div style="background:#FFFFFF; border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1rem; margin-bottom:1rem;">
+              <strong style="font-size:0.85rem; color:var(--text-dark); display:block; margin-bottom:0.5rem;">Potentially Addressed Role Requirements:</strong>
+              <div id="sim-addressed-requirements" style="display:flex; gap:0.4rem; flex-wrap:wrap; min-height:45px; align-items:center;">
+                <span style="font-size:0.825rem; color:var(--text-muted);">Toggle enhancements to simulate role coverage...</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="padding-top:1rem; border-top:1px solid var(--border-purple); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+            <span style="font-size:0.8rem; color:var(--text-muted);">Ready to update your resume bullet points?</span>
+            <a href="/resume-editor.html" class="btn btn-primary btn-sm">Open Resume Studio &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/icons.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/nav.js"></script>
+  <script src="/js/chatbot.js"></script>
+  <script src="/js/simulator.js"></script>
+</body>
+</html>

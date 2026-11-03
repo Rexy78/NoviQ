@@ -1,0 +1,6 @@
+{
+  "name": "Career Nova",
+  "description": "AI-powered SaaS career intelligence platform for ATS resume scoring, skill gap detection, project analysis, career roadmaps, and course recommendations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

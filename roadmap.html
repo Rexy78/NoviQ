@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Roadmap - Career Nova</title>
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/skills.css">
+  <link rel="stylesheet" href="/css/animations.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <div id="sidebar-container"></div>
+
+    <main class="main-content">
+      <div class="dash-header">
+        <div>
+          <h1 class="page-title">Personalized Career Roadmap</h1>
+          <p class="page-subtitle">A sequenced, four-stage strategic action plan designed to systematically close skill gaps and build role evidence</p>
+        </div>
+        <div>
+          <span class="target-role-pill" id="road-role-pill">Target Role: Loading...</span>
+        </div>
+      </div>
+
+      <!-- Timeline Container -->
+      <div class="card animate-fade-in" style="margin-bottom:2.5rem;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.25rem;">
+          <div>
+            <h3 style="margin:0; color:var(--text-dark); font-size:1.2rem;">Four-Stage Implementation Strategy</h3>
+            <p style="font-size:0.875rem; color:var(--text-muted); margin-top:0.2rem;">Sequenced from immediate foundational wins to long-term role mastery</p>
+          </div>
+          <button class="btn btn-outline btn-sm" onclick="Nova.ask('Walk me through my career roadmap stages and recommended milestones.')" style="display:inline-flex; align-items:center; gap:0.3rem;">
+            <span>Explain Roadmap with Nova</span>
+          </button>
+        </div>
+
+        <div class="roadmap-timeline animate-fade-in animate-stagger-1" id="roadmap-timeline-container">
+          <div class="skeleton-box" style="height:120px; width:100%; margin-bottom:1.5rem;"></div>
+          <div class="skeleton-box" style="height:120px; width:100%; margin-bottom:1.5rem;"></div>
+          <div class="skeleton-box" style="height:120px; width:100%;"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/icons.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/nav.js"></script>
+  <script src="/js/chatbot.js"></script>
+  <script src="/js/roadmap.js"></script>
+</body>
+</html>

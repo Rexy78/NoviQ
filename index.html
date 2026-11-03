@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Nova - AI Skill Gap Analyzer & Career Intelligence Platform</title>
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/animations.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <style>
+    .landing-nav {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+    }
+    .hero-section {
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .hero-title {
+      font-size: 3.25rem;
+      line-height: 1.15;
+      color: var(--text-dark);
+      margin-bottom: 1.25rem;
+    }
+    .hero-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 3.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="landing-nav">
+    <a href="/" class="brand-logo" style="margin-bottom:0; padding:0;">
+      <img src="/images/app-logo.jpg" alt="Application Logo" style="height: 50px; width: auto; max-width: 220px; border-radius: 10px; object-fit: contain; display: block;" />
+    </a>
+    <div style="display:flex; gap:1rem; align-items:center;">
+      <a href="/login.html" class="btn btn-outline">Log in</a>
+      <a href="/signup.html" class="btn btn-primary">Get Started</a>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <section class="hero-section animate-fade-in">
+      <div class="badge badge-purple" style="margin-bottom:1.25rem; padding:0.4rem 1rem; display:inline-flex; align-items:center; gap:0.4rem;">
+        <span id="hero-badge-icon"></span> <span>AI-Powered Career Intelligence</span>
+      </div>
+      <h1 class="hero-title">Understand Your Resume. Close Your Skill Gaps. Build Your Career.</h1>
+      <p class="hero-subtitle">
+        Transform your resume into a competitive advantage. Get real-time ATS scoring, precise skill gap analysis, project insights, and personalized career roadmaps driven by explainable AI.
+      </p>
+      <div class="hero-actions">
+        <a href="/signup.html" class="btn btn-primary btn-lg" style="display:inline-flex; align-items:center; gap:0.4rem;">
+          <span>Analyze My Resume</span>
+        </a>
+        <a href="/login.html" class="btn btn-secondary btn-lg" style="display:inline-flex; align-items:center; gap:0.4rem;">
+          <span>Explore Intelligence</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer style="text-align:center; padding:3rem 0; color:var(--text-muted); border-top:1px solid var(--border-color); font-size:0.9rem;">
+    © 2026 Career Nova — AI Skill Gap Analyzer & Career Intelligence Platform
+  </footer>
+
+  <script src="/js/icons.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const bIcon = document.getElementById('hero-badge-icon');
+      if (bIcon && window.Icons) bIcon.innerHTML = Icons.get('sparkles', 'w-4 h-4 text-purple-600');
+    });
+  </script>
+</body>
+</html>

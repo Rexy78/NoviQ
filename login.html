@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Career Nova</title>
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/animations.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <style>
+    .auth-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      background: linear-gradient(135deg, var(--bg-main), var(--bg-purple-light));
+    }
+    .auth-box {
+      background: #FFFFFF;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 440px;
+      box-shadow: var(--shadow-lg);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="auth-container">
+    <div class="auth-box animate-fade-in">
+      <div style="text-align:center; margin-bottom:2rem;">
+        <a href="/" class="brand-logo" style="justify-content:center; margin-bottom:1rem; padding:0;">
+          <img src="/images/app-logo.jpg" alt="Application Logo" style="height: 56px; width: auto; max-width: 240px; border-radius: 12px; object-fit: contain; display: block; margin: 0 auto;" />
+        </a>
+        <h2 style="font-size:1.5rem; margin-bottom:0.25rem;">Welcome Back</h2>
+        <p style="color:var(--text-muted); font-size:0.9rem;">Log in to your career intelligence dashboard</p>
+      </div>
+
+      <form id="login-form">
+        <div class="form-group">
+          <label class="form-label" for="email">Email Address</label>
+          <input type="email" id="email" class="form-control" placeholder="you@example.com" required />
+        </div>
+
+        <div class="form-group">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <label class="form-label" for="password">Password</label>
+            <button type="button" id="toggle-pwd-btn" style="background:none;border:none;color:var(--primary-purple);font-size:0.8rem;cursor:pointer;font-weight:600;">Show</button>
+          </div>
+          <input type="password" id="password" class="form-control" placeholder="••••••••" required />
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+          <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.85rem; color:var(--text-main); cursor:pointer;">
+            <input type="checkbox" id="remember-me" /> Remember me
+          </label>
+          <a href="#" style="font-size:0.85rem; color:var(--primary-purple); font-weight:600;" onclick="API.showToast('Password reset link sent if registered!', 'info'); return false;">Forgot password?</a>
+        </div>
+
+        <button type="submit" id="submit-btn" class="btn btn-primary" style="width:100%; padding:0.85rem;">
+          <span>Log In</span>
+        </button>
+      </form>
+
+      <div style="text-align:center; margin-top:1.75rem; padding-top:1.25rem; border-top:1px solid var(--border-color); font-size:0.9rem; color:var(--text-muted); display:flex; flex-direction:column; gap:0.75rem; align-items:center;">
+        <div>Don't have an account? <a href="/signup.html" style="font-weight:700;">Create account</a></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('login-form');
+      const pwdInput = document.getElementById('password');
+      const toggleBtn = document.getElementById('toggle-pwd-btn');
+      const submitBtn = document.getElementById('submit-btn');
+
+      toggleBtn.addEventListener('click', () => {
+        const isPwd = pwdInput.type === 'password';
+        pwdInput.type = isPwd ? 'text' : 'password';
+        toggleBtn.textContent = isPwd ? 'Hide' : 'Show';
+      });
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email').value.trim();
+        const password = pwdInput.value;
+
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span class="spinner"></span> Logging in...';
+
+        try {
+          await Auth.login(email, password);
+        } catch (err) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<span>Log In</span>';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

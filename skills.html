@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skill Gap Intelligence - Career Nova</title>
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/skills.css">
+  <link rel="stylesheet" href="/css/animations.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <div id="sidebar-container"></div>
+
+    <main class="main-content">
+      <!-- 1. TWO-COLUMN HERO DASHBOARD -->
+      <section class="hero-analytics-grid animate-fade-in" id="hero-analytics-section">
+        <!-- LEFT COLUMN: Primary Score & Evidence Formula -->
+        <div class="card hero-score-card">
+          <div class="hero-header-block">
+            <div class="hero-title-row">
+              <div>
+                <h1 class="hero-page-title">Skill Gap Intelligence</h1>
+                <p class="hero-page-desc">Evidence-based evaluation of your technical stack against target role requirements.</p>
+              </div>
+              <div class="target-role-badge" id="skills-role-pill">
+                <span class="role-label">Target Role</span>
+                <span class="role-value" id="skills-role-text">Frontend Developer</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-score-main">
+            <div class="score-number-wrap">
+              <span class="hero-score-number" id="skill-match-banner-val">15%</span>
+            </div>
+            <div class="score-details-wrap">
+              <div class="alignment-title-row">
+                <h2 class="alignment-heading">Evidence-Based Skill Alignment</h2>
+                <span class="status-badge-hero badge-warning" id="match-level-badge">Needs Improvement</span>
+              </div>
+              <div class="hero-distribution-line" id="hero-distribution-text">
+                1 Verified · 1 Partial · 8 No Resume Evidence
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-formula-wrap">
+            <span class="formula-title">Evidence Formula:</span>
+            <code class="formula-badge" id="score-formula-summary">(1 × 1.0 + 1 × 0.5) ÷ 10 = 15%</code>
+          </div>
+
+          <div class="hero-disclaimer-box">
+            <span class="disclaimer-icon">ℹ</span>
+            <p class="disclaimer-text">
+              This score reflects evidence found in your resume, not your complete technical ability.
+            </p>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: Compact Benchmark Skill Coverage (All 10 Interactive Chips) -->
+        <div class="card hero-coverage-card">
+          <div class="coverage-header-row">
+            <div>
+              <h2 class="coverage-heading">Benchmark Skill Coverage</h2>
+              <p class="coverage-subheading">10 requirements evaluated for <span id="cov-role-name">Frontend Developer</span></p>
+            </div>
+            <div class="coverage-summary-pills">
+              <span class="cov-stat stat-ver" id="cov-pill-ver">✓ 1 Verified</span>
+              <span class="cov-stat stat-par" id="cov-pill-par">⚠ 1 Partial</span>
+              <span class="cov-stat stat-mis" id="cov-pill-mis">✕ 8 No Evidence</span>
+            </div>
+          </div>
+
+          <!-- All 10 Benchmark Skills as Compact Clickable Chips -->
+          <div class="coverage-chips-grid" id="coverage-all-chips-grid">
+            <!-- Dynamically populated or rendered via JS with click-to-modal handlers -->
+          </div>
+
+          <div class="coverage-highlight-note">
+            Evidence found across <strong>2 of 10 requirements</strong>. <span class="cov-note-diff">(Distinct from weighted 15% alignment score)</span>
+          </div>
+
+          <div class="coverage-card-footer">
+            <button class="btn-view-all-cov" onclick="openAllRequirementsModal()" id="btn-view-all-cov">
+              <span>View detailed requirement analysis</span> <span>→</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. INTERACTIVE SKILL EVIDENCE MAP -->
+      <section class="evidence-map-section animate-fade-in" id="evidence-map-section">
+        <div class="section-heading-wrap">
+          <h2 class="section-heading">Skill Evidence Map</h2>
+          <p class="section-heading-sub">See how CareerNova connected your resume evidence to the benchmark requirements.</p>
+        </div>
+
+        <div class="card evidence-map-card">
+          <!-- Filter Toolbar & Search -->
+          <div class="evidence-map-toolbar">
+            <div class="map-filter-pills" id="map-filter-pills">
+              <button class="map-filter-btn is-active" data-filter="all" onclick="setEvidenceMapFilter('all')">All</button>
+              <button class="map-filter-btn" data-filter="VERIFIED" onclick="setEvidenceMapFilter('VERIFIED')">✓ Verified</button>
+              <button class="map-filter-btn" data-filter="PARTIAL" onclick="setEvidenceMapFilter('PARTIAL')">⚠ Partial</button>
+              <button class="map-filter-btn" data-filter="MISSING" onclick="setEvidenceMapFilter('MISSING')">✕ No Evidence</button>
+            </div>
+            <div class="map-search-wrap">
+              <input type="text" class="map-search-input" id="map-search-input" placeholder="Search benchmark skill..." oninput="handleMapSearch(this.value)" autocomplete="off">
+            </div>
+          </div>
+
+          <!-- Interactive Evidence Map Flow Container -->
+          <div class="evidence-map-flow-container" id="evidence-map-rows">
+            <!-- Dynamically populated via JS: 2 detailed evidence paths + compact 8 missing skills block -->
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. COMPACT "WHAT THIS MEANS" INSIGHT PANEL -->
+      <section class="what-this-means-section animate-fade-in" id="what-this-means-section">
+        <div class="card what-this-means-card">
+          <div class="wtm-header">
+            <h2 class="wtm-heading">What This Means</h2>
+            <span class="wtm-subtitle">Key takeaways based on your resume's technical evidence.</span>
+          </div>
+
+          <div class="wtm-grid">
+            <div class="wtm-item">
+              <div class="wtm-item-top">
+                <span class="wtm-item-label">Strongest Evidence</span>
+                <span class="wtm-tag tag-verified">Verified ✓</span>
+              </div>
+              <p class="wtm-item-content"><strong>JavaScript ✓</strong></p>
+              <p class="wtm-item-desc">Demonstrated through practical project implementation.</p>
+            </div>
+
+            <div class="wtm-item">
+              <div class="wtm-item-top">
+                <span class="wtm-item-label">Biggest Opportunity</span>
+                <span class="wtm-tag tag-opportunity">High Impact</span>
+              </div>
+              <p class="wtm-item-content"><strong>Modern Frontend Development</strong></p>
+              <p class="wtm-item-desc">React.js · TypeScript · REST APIs</p>
+            </div>
+
+            <div class="wtm-item">
+              <div class="wtm-item-top">
+                <span class="wtm-item-label">Evidence Gap</span>
+                <span class="wtm-tag tag-gap">8 / 10</span>
+              </div>
+              <p class="wtm-item-content"><strong>8 / 10</strong></p>
+              <p class="wtm-item-desc">Benchmark requirements currently have no resume evidence.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. PRIORITY IMPROVEMENTS (2x2 Equal-Sized Grid) -->
+      <section class="priority-improvements-section animate-fade-in" id="priority-improvements-section">
+        <div class="section-heading-wrap">
+          <h2 class="section-heading-title">Priority Improvements</h2>
+          <p class="section-heading-sub">Focus on the highest-impact gaps first to strengthen your evidence for the target role.</p>
+        </div>
+
+        <div class="priority-grid-2x2" id="priority-cards-grid">
+          <!-- Rendered via JS: 4 Equal-Sized Cards -->
+          <div class="skeleton-box" style="height:210px;"></div>
+          <div class="skeleton-box" style="height:210px;"></div>
+          <div class="skeleton-box" style="height:210px;"></div>
+          <div class="skeleton-box" style="height:210px;"></div>
+        </div>
+      </section>
+
+      <!-- 5. FASTEST PATH & PROJECT BLUEPRINT -->
+      <section class="strategy-section animate-fade-in" id="gap-strategy-section">
+        <div class="section-heading-wrap">
+          <h2 class="section-heading-title">Fastest Path</h2>
+          <p class="section-heading-sub">Address multiple benchmark gaps through one coherent practical project.</p>
+        </div>
+
+        <div class="card strategy-main-card">
+          <!-- Visual Roadmap (Desktop Horizontal, Mobile Vertical) -->
+          <div class="roadmap-steps-bar">
+            <div class="roadmap-step">
+              <div class="step-badge">1</div>
+              <div class="step-info">
+                <div class="step-name">React.js</div>
+                <div class="step-detail">Reusable components & state</div>
+              </div>
+            </div>
+
+            <div class="roadmap-arrow">→</div>
+
+            <div class="roadmap-step">
+              <div class="step-badge">2</div>
+              <div class="step-info">
+                <div class="step-name">TypeScript</div>
+                <div class="step-detail">Type-safe interfaces</div>
+              </div>
+            </div>
+
+            <div class="roadmap-arrow">→</div>
+
+            <div class="roadmap-step">
+              <div class="step-badge">3</div>
+              <div class="step-info">
+                <div class="step-name">REST APIs</div>
+                <div class="step-detail">Live asynchronous data</div>
+              </div>
+            </div>
+
+            <div class="roadmap-arrow">→</div>
+
+            <div class="roadmap-step">
+              <div class="step-badge">4</div>
+              <div class="step-info">
+                <div class="step-name">Responsive Design</div>
+                <div class="step-detail">Mobile-first layouts</div>
+              </div>
+            </div>
+
+            <div class="roadmap-arrow">→</div>
+
+            <div class="roadmap-step">
+              <div class="step-badge">5</div>
+              <div class="step-info">
+                <div class="step-name">Git + Testing + CI/CD</div>
+                <div class="step-detail">Quality & automated deployment</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Highlighted Project Blueprint Card -->
+          <div class="blueprint-card">
+            <div class="blueprint-top-row">
+              <div class="blueprint-tag-group">
+                <span class="blueprint-label-pill">Suggested Project Blueprint</span>
+                <span class="blueprint-impact-badge">1 PROJECT → 6+ BENCHMARK GAPS</span>
+              </div>
+            </div>
+
+            <p class="blueprint-description">
+              Build a React + TypeScript dashboard that:
+            </p>
+            <ul class="blueprint-bullet-list">
+              <li>consumes a live REST API</li>
+              <li>uses mobile-first responsive design</li>
+              <li>follows Git-based development</li>
+              <li>includes automated testing</li>
+              <li>is deployed through CI/CD</li>
+            </ul>
+
+            <div class="blueprint-bottom-row">
+              <p class="blueprint-disclaimer">
+                Completing and documenting this project can provide practical evidence for multiple benchmark skills, which CareerNova can evaluate when the updated experience is added to the resume.
+              </p>
+              <button class="btn btn-purple btn-blueprint-action" onclick="generateProjectBlueprintWithNova()" id="btn-blueprint-nova">
+                <span>✦</span> Generate Project Blueprint with Nova
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. SUPPORTING SKILLS (FINAL SECTION) -->
+      <section class="supporting-skills-section animate-fade-in" id="additional-skills-container">
+        <div class="section-heading-wrap">
+          <h2 class="section-heading">Supporting Skills</h2>
+          <p class="section-heading-sub">Skills detected in your resume outside the 10 benchmark requirements for <span id="supp-role-name">Frontend Developer</span>.</p>
+          <div class="supp-score-info-note">
+            <span class="supp-info-icon">ℹ</span>
+            <span>These skills do not affect your 15% benchmark alignment score, but they provide additional evidence of your technical background.</span>
+          </div>
+        </div>
+
+        <!-- Dynamic Summary Bar -->
+        <div class="card supp-summary-bar">
+          <div class="supp-bar-left">
+            <span class="badge-supporting-count" id="supp-total-count-badge">6 Skills Detected</span>
+          </div>
+          <div class="supp-bar-right" id="supp-dynamic-breakdown">
+            <span class="supp-stat-pill pill-practical" id="supp-pill-prac">✓ 1 Practical Evidence</span>
+            <span class="supp-stat-pill pill-learning" id="supp-pill-learn">◐ 4 Learning Evidence</span>
+            <span class="supp-stat-pill pill-mentioned" id="supp-pill-ment">• 1 Mentioned</span>
+          </div>
+        </div>
+
+        <!-- 6 Equal-Sized Interactive Supporting Cards Grid (3x2 Desktop) -->
+        <div class="supporting-cards-grid" id="supporting-cards-grid">
+          <!-- Rendered dynamically via JS -->
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- 1. FOCUSED DETAIL MODAL WITH BACKGROUND BLUR -->
+  <div class="detail-modal-overlay" id="skill-detail-modal-overlay" onclick="handleModalOverlayClick(event)" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-skill-title">
+    <div class="detail-modal-dialog" id="skill-detail-modal-dialog" onclick="event.stopPropagation()">
+      <!-- Rendered dynamically via JS -->
+    </div>
+  </div>
+
+  <!-- 2. ALL REQUIREMENTS FULL MATRIX MODAL -->
+  <div class="detail-modal-overlay" id="all-req-modal-overlay" onclick="handleAllReqOverlayClick(event)" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="all-req-modal-title">
+    <div class="detail-modal-dialog matrix-modal-dialog" id="all-req-modal-dialog" onclick="event.stopPropagation()">
+      <!-- Rendered dynamically via JS -->
+    </div>
+  </div>
+
+  <!-- 3. SUPPORTING SKILLS MODAL (6 EQUAL CARDS) -->
+  <div class="detail-modal-overlay" id="supporting-modal-overlay" onclick="handleSupportingOverlayClick(event)" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="supp-modal-title">
+    <div class="detail-modal-dialog supporting-modal-dialog" id="supporting-modal-dialog" onclick="event.stopPropagation()">
+      <!-- Rendered dynamically via JS -->
+    </div>
+  </div>
+
+  <script src="/js/icons.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/nav.js"></script>
+  <script src="/js/chatbot.js"></script>
+  <script src="/js/skills.js"></script>
+</body>
+</html>
